@@ -1,0 +1,11 @@
+{{#if @title}}
+  <label for={{@formFieldId}} class="widget-metadata__label">
+    <span class="widget-metadata__title">
+      {{@title}}
+      {{#if @isRequired}}<span class="widget-metadata__required">*</span>{{/if}}
+    </span>
+    {{#if @description}}
+      <p class="widget-metadata__description">{{@description}}</p>
+    {{/if}}
+  </label>
+{{/if}}
