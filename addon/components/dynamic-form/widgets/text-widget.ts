@@ -3,7 +3,7 @@ import { DynamicFormWidgetsWidgetMetadataArgs } from 'ember-dynamic-form/compone
 import { createDomId } from 'ember-dynamic-form/utils/dom';
 import { tracked } from '@glimmer/tracking';
 
-interface DynamicFormWidgetsTextWidgetArgs
+export interface DynamicFormWidgetsTextWidgetArgs
   extends DynamicFormWidgetsWidgetMetadataArgs {
   value: string;
 }
