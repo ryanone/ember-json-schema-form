@@ -1,16 +1,19 @@
-import { TypeSchema, WidgetMap } from 'ember-dynamic-form/utils/types/registry';
-import Component from '@glimmer/component';
-import JsonSchema from 'ember-dynamic-form/utils/types/json-schema';
 import {
-  FormElementData,
+  FormData,
+  FormElementArgs,
   createFormElementsData,
 } from 'ember-dynamic-form/utils/form-data';
+import JsonSchema, {
+  JsonSchemaType,
+} from 'ember-dynamic-form/utils/types/json-schema';
+import { TypeSchema, WidgetMap } from 'ember-dynamic-form/utils/types/registry';
+import Component from '@glimmer/component';
 import RegistryService from 'ember-dynamic-form/services/dynamic-form/registry';
 import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
 
 interface DynamicFormArgs {
-  data: Record<string, unknown>;
+  data: FormData;
   dataSchema: JsonSchema;
   dataTypeSchema?: TypeSchema;
   widgets?: WidgetMap;
@@ -19,7 +22,8 @@ interface DynamicFormArgs {
 export default class DynamicForm extends Component<DynamicFormArgs> {
   formId: string;
 
-  @service declare registry: RegistryService;
+  @service('dynamic-form/registry')
+  declare registry: RegistryService;
 
   constructor(owner: unknown, args: DynamicFormArgs) {
     super(owner, args);
@@ -39,13 +43,11 @@ export default class DynamicForm extends Component<DynamicFormArgs> {
    * - elementSchema -
    * - formId
    */
-  get formElementsData(): FormElementData[] {
-    // const jsonSchema: JsonSchemaDataType = this.args.dataSchema;
-    // return createFormElementsData(
-    //   this.args.data,
-    //   this.args.dataSchema,
-    //   this.formId
-    // );
-    return [];
+  get formElementsArgs(): FormElementArgs[] {
+    return createFormElementsData(
+      this.args.data,
+      this.args.dataSchema as unknown as JsonSchemaType,
+      this.formId
+    );
   }
 }

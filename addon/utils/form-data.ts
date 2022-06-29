@@ -1,50 +1,58 @@
-import JsonSchema, {
+import {
   DataType,
+  JsonSchemaType,
   ObjectType,
 } from 'ember-dynamic-form/utils/types/json-schema';
 
-interface FormElementOpts {
+export type FormData =
+  | Record<string, unknown>
+  | boolean
+  | null
+  | number
+  | string
+  | unknown[];
+
+export interface FormElementOpts {
   name?: string;
 }
 
-export interface FormElementData {
-  data: Record<string, unknown>;
-  dataSchema: JsonSchema;
-  formId: string;
+export interface FormElementArgs {
+  data: FormData;
+  dataSchema: JsonSchemaType;
   name?: string;
 }
 
 export function createFormElementsData(
-  data: Record<string, unknown>,
-  dataSchema: JsonSchema,
+  data: FormData,
+  dataSchema: JsonSchemaType,
   formId: string,
   formElementOpts?: FormElementOpts
-): FormElementData[] {
-  const formElementsData = [];
+): FormElementArgs[] {
+  const formElementsArgs = [];
   // TODO: Add support for array types
   if (dataSchema.type === DataType.Object) {
-    Object.keys(data).forEach((key) => {
+    const objData = data as Record<string, unknown>;
+    Object.keys(objData).forEach((key) => {
       const objSchema = dataSchema as unknown as ObjectType;
       const objProperties = objSchema.properties;
-      formElementsData.push(
+      formElementsArgs.push(
         createFormElementsData(
-          data[key] as Record<string, unknown>,
-          objProperties[key] as JsonSchema,
+          objData[key] as Record<string, unknown>,
+          objProperties[key] as JsonSchemaType,
           formId,
           { name: key }
         )
       );
     });
   } else {
-    const formElementData: FormElementData = {
+    const formElementArgs: FormElementArgs = {
       data,
       dataSchema,
-      formId,
     };
     if (formElementOpts?.name) {
-      formElementData.name = formElementOpts.name;
+      formElementArgs.name = formElementOpts.name;
     }
-    formElementsData.push(formElementData);
+    formElementsArgs.push(formElementArgs);
   }
-  return formElementsData;
+  return formElementsArgs;
 }

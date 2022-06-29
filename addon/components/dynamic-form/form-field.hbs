@@ -1,0 +1,8 @@
+{{#if this.formElement}}
+  {{#let this.formElement as |formElement|}}
+    <formElement
+      @data={{@data}}
+      @dataSchema={{@dataSchema}}
+      @formId={{@formId}}/>
+  {{/let}}
+{{/if}}

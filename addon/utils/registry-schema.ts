@@ -49,7 +49,7 @@ widget map
 
 */
 
-const DEFAULT_FORMAT = 'default';
+export const DEFAULT_FORMAT = 'default';
 const TEXT_INPUT_WIDGET_ID = 'TextInput';
 
 const DEFAULT_TYPE_SCHEMA: TypeSchema = {
@@ -102,7 +102,7 @@ export default class RegistrySchema {
     });
   }
 
-  getWidget(opts: Readonly<GetWidgetOpts>): Component | undefined {
+  getWidget(opts: Readonly<GetWidgetOpts>): Component<unknown> | undefined {
     const formatWidgetMap = this.typeRegistry[opts.type];
     if (formatWidgetMap) {
       const format = opts.format ?? DEFAULT_FORMAT;
