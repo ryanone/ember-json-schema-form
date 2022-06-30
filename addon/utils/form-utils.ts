@@ -16,43 +16,43 @@ export interface FormElementOpts {
   name?: string;
 }
 
-export interface FormElementArgs {
+export interface FormFieldArgs {
   data: FormData;
   dataSchema: JsonSchemaType;
-  name?: string;
+  elementOpts?: FormElementOpts;
 }
 
-export function createFormElementsData(
+export function createFormFieldArgsList(
   data: FormData,
   dataSchema: JsonSchemaType,
   formId: string,
-  formElementOpts?: FormElementOpts
-): FormElementArgs[] {
-  const formElementsArgs = [];
+  name?: string
+): FormFieldArgs[] {
+  const argsList = [];
   // TODO: Add support for array types
   if (dataSchema.type === DataType.Object) {
     const objData = data as Record<string, unknown>;
     Object.keys(objData).forEach((key) => {
       const objSchema = dataSchema as unknown as ObjectType;
       const objProperties = objSchema.properties;
-      formElementsArgs.push(
-        createFormElementsData(
+      argsList.push(
+        createFormFieldArgsList(
           objData[key] as Record<string, unknown>,
           objProperties[key] as JsonSchemaType,
           formId,
-          { name: key }
+          key
         )
       );
     });
   } else {
-    const formElementArgs: FormElementArgs = {
+    const formFieldArgs: FormFieldArgs = {
       data,
       dataSchema,
     };
-    if (formElementOpts?.name) {
-      formElementArgs.name = formElementOpts.name;
+    if (name) {
+      formFieldArgs.elementOpts = { name };
     }
-    formElementsArgs.push(formElementArgs);
+    argsList.push(formFieldArgs);
   }
-  return formElementsArgs;
+  return argsList;
 }

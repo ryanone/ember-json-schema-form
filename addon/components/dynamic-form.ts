@@ -1,8 +1,8 @@
 import {
   FormData,
-  FormElementArgs,
-  createFormElementsData,
-} from 'ember-dynamic-form/utils/form-data';
+  FormFieldArgs,
+  createFormFieldArgsList,
+} from 'ember-dynamic-form/utils/form-utils';
 import JsonSchema, {
   JsonSchemaType,
 } from 'ember-dynamic-form/utils/types/json-schema';
@@ -43,8 +43,8 @@ export default class DynamicForm extends Component<DynamicFormArgs> {
    * - elementSchema -
    * - formId
    */
-  get formElementsArgs(): FormElementArgs[] {
-    return createFormElementsData(
+  get formFieldArgsList(): FormFieldArgs[] {
+    return createFormFieldArgsList(
       this.args.data,
       this.args.dataSchema as unknown as JsonSchemaType,
       this.formId
