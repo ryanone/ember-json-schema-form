@@ -8,11 +8,7 @@ import { FormFieldArgs } from 'ember-dynamic-form/utils/form-utils';
 import RegistryService from 'ember-dynamic-form/services/dynamic-form/registry';
 import { inject as service } from '@ember/service';
 
-interface DynamicFormStringFormElementArgs extends FormFieldArgs {
-  formId: string;
-}
-
-export default class DynamicFormStringFormElement extends Component<DynamicFormStringFormElementArgs> {
+export default class DynamicFormStringFormElement extends Component<FormFieldArgs> {
   @service('dynamic-form/registry')
   declare registry: RegistryService;
 

@@ -19,6 +19,7 @@ export interface FormElementOpts {
 export interface FormFieldArgs {
   data: FormData;
   dataSchema: JsonSchemaType;
+  formId: string;
   elementOpts?: FormElementOpts;
 }
 
@@ -48,6 +49,7 @@ export function createFormFieldArgsList(
     const formFieldArgs: FormFieldArgs = {
       data,
       dataSchema,
+      formId,
     };
     if (name) {
       formFieldArgs.elementOpts = { name };
