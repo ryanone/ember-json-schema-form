@@ -20,12 +20,16 @@ export default class DynamicFormStringFormElement extends Component<DynamicFormS
   @service('dynamic-form/registry')
   declare registry: RegistryService;
 
-  get widgetData() {
-    const { dataSchema } = this.args;
-    return {
-      description: dataSchema.description,
-      title: dataSchema.title,
-    };
+  get description() {
+    return this.args.dataSchema.description;
+  }
+
+  get title() {
+    return this.args.dataSchema.title;
+  }
+
+  get value() {
+    return this.args.data;
   }
 
   get widget(): Component<unknown> {

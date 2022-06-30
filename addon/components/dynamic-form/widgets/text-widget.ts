@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { DynamicFormWidgetsWidgetMetadataArgs } from 'ember-dynamic-form/components/dynamic-form/widgets/widget-metadata';
 import { createDomId } from 'ember-dynamic-form/utils/dom';
-import { tracked } from '@glimmer/tracking';
 
 export interface DynamicFormWidgetsTextWidgetArgs
   extends DynamicFormWidgetsWidgetMetadataArgs {
@@ -12,7 +11,4 @@ export default class DynamicFormWidgetsTextWidget extends Component<DynamicFormW
   get inputId() {
     return createDomId(this);
   }
-
-  @tracked
-  value = '';
 }

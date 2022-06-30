@@ -13,26 +13,13 @@ interface DynamicFormFormFieldArgs {
   opts?: FormElementArgs;
 }
 
-export default class DynamicFormFormField extends Component<DynamicFormFormFieldArgs> {
-  get formElement(): Component | undefined {
-    const { dataSchema } = this.args;
-    const { type } = dataSchema;
-    // TODO: Add support for other data types.
-    if (type === DataType.String) {
-      return StringFormElement as unknown as Component;
-    }
-    return undefined;
-  }
+const FORM_ELEMENTS_MAP: Map<DataType, typeof Component> = new Map();
+FORM_ELEMENTS_MAP.set(DataType.String, StringFormElement);
 
-  // get widget(): Component<unknown> | undefined {
-  //   const dataSchema = this.args.dataSchema;
-  //   const { type } = dataSchema;
-  //   const format =
-  //     type === DataType.String ? (dataSchema as StringType).format : 'default';
-  //   return this.registry.getWidget({
-  //     formId: this.args.formId,
-  //     format,
-  //     type,
-  //   });
-  // }
+export default class DynamicFormFormField extends Component<DynamicFormFormFieldArgs> {
+  get formElement(): Component<unknown> | undefined {
+    const { type } = this.args.dataSchema;
+    const component = FORM_ELEMENTS_MAP.get(type);
+    return component && (component as unknown as Component<unknown>);
+  }
 }
