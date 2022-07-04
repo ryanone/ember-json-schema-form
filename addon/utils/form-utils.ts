@@ -1,7 +1,7 @@
 import {
   DataType,
-  JsonSchemaType,
-  ObjectType,
+  JsonTypeSchema,
+  ObjectTypeSchema,
 } from 'ember-dynamic-form/utils/types/json-schema';
 
 export type FormData =
@@ -18,28 +18,28 @@ export interface FormElementOpts {
 
 export interface FormFieldArgs {
   data: FormData;
-  dataSchema: JsonSchemaType;
+  dataSchema: JsonTypeSchema;
   formId: string;
   elementOpts?: FormElementOpts;
 }
 
 export function createFormFieldArgsList(
   data: FormData,
-  dataSchema: JsonSchemaType,
+  dataSchema: JsonTypeSchema,
   formId: string,
   name?: string
 ): FormFieldArgs[] {
   const argsList = [];
   // TODO: Add support for array types
   if (dataSchema.type === DataType.Object) {
-    const objData = data as Record<string, unknown>;
-    Object.keys(objData).forEach((key) => {
-      const objSchema = dataSchema as unknown as ObjectType;
-      const objProperties = objSchema.properties;
+    const objSchema = dataSchema as unknown as ObjectTypeSchema;
+    const objProperties = objSchema.properties;
+    const objData = data && (data as Record<string, unknown>);
+    Object.keys(objProperties).forEach((key) => {
       argsList.push(
-        createFormFieldArgsList(
-          objData[key] as Record<string, unknown>,
-          objProperties[key] as JsonSchemaType,
+        ...createFormFieldArgsList(
+          objData && (objData[key] as Record<string, unknown>),
+          objProperties[key] as JsonTypeSchema,
           formId,
           key
         )

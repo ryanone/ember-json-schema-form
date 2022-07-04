@@ -59,7 +59,7 @@ const DEFAULT_TYPE_SCHEMA: TypeSchema = {
 };
 
 const DEFAULT_WIDGET_MAP: WidgetMap = {
-  TextInput: TextWidget,
+  [TEXT_INPUT_WIDGET_ID]: TextWidget,
 };
 
 type GetWidgetOpts = {

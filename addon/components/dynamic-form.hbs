@@ -1,10 +1,7 @@
 <form method="POST" ...attributes>
-  {{#each this.formFieldArgsList as |formFieldArgs|}}
-    <DynamicForm::FormField
-      @data={{formFieldArgs.data}}
-      @dataSchema={{formFieldArgs.dataSchema}}
-      @formId={{this.formId}}
-      @opts={{formFieldArgs.formElementOpts}}
-    />
-  {{/each}}
+  <DynamicForm::FormField
+    @data={{@data}}
+    @dataSchema={{@dataSchema}}
+    @formId={{this.formId}}
+  />
 </form>

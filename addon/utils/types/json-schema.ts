@@ -15,6 +15,8 @@ enum SchemaVersion {
   Draft2019_09 = 'https://json-schema.org/draft/2019-09/schema',
 }
 
+// See http://json-schema.org/understanding-json-schema/reference/string.html#built-in-formats
+// for comprehensive list.
 enum StringFormat {
   Date = 'date',
   DateTime = 'date-time',
@@ -29,70 +31,71 @@ export default interface RootJsonSchema {
   $schema: SchemaVersion;
 }
 
-interface BaseJsonDataType {
+interface BaseDataTypeSchema {
   description?: string;
   title?: string;
+  format?: string;
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/array.html
-export interface ArrayType extends BaseJsonDataType {
+export interface ArrayTypeSchema extends BaseDataTypeSchema {
   type: DataType.Array;
   items: {
     type: DataType;
   };
 }
 
-export interface BooleanType extends BaseJsonDataType {
+export interface BooleanTypeSchema extends BaseDataTypeSchema {
   type: DataType.Boolean;
 }
 
-export interface IntegerType extends BaseJsonDataType {
+export interface IntegerTypeSchema extends BaseDataTypeSchema {
   type: DataType.Integer;
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/object.html
-export interface ObjectType extends BaseJsonDataType {
+export interface ObjectTypeSchema extends BaseDataTypeSchema {
   type: DataType.Object;
-  properties: Record<string, JsonSchemaType>;
+  properties: Record<string, JsonTypeSchema>;
   required?: string[];
 }
 
-export interface NullType extends BaseJsonDataType {
+export interface NullTypeSchema extends BaseDataTypeSchema {
   type: DataType.Null;
 }
 
-export interface NumberType extends BaseJsonDataType {
+export interface NumberTypeSchema extends BaseDataTypeSchema {
   type: DataType.Number;
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/string.html
-export interface StringType extends BaseJsonDataType {
+export interface StringTypeSchema extends BaseDataTypeSchema {
   type: DataType.String;
   format?: StringFormat;
 }
 
-export type JsonSchemaType =
-  | ArrayType
-  | BooleanType
-  | IntegerType
-  | ObjectType
-  | NullType
-  | NumberType
-  | StringType;
+export type JsonTypeSchema =
+  | ArrayTypeSchema
+  | BooleanTypeSchema
+  | IntegerTypeSchema
+  | ObjectTypeSchema
+  | NullTypeSchema
+  | NumberTypeSchema
+  | StringTypeSchema;
 
-interface RootArrayType extends RootJsonSchema, ArrayType {}
-interface RootBooleanType extends RootJsonSchema, BooleanType {}
-interface RootIntegerType extends RootJsonSchema, IntegerType {}
-interface RootObjectType extends RootJsonSchema, ObjectType {}
-interface RootNullType extends RootJsonSchema, NullType {}
-interface RootNumberType extends RootJsonSchema, NumberType {}
-interface RootStringType extends RootJsonSchema, StringType {}
+interface RootArrayTypeSchema extends RootJsonSchema, ArrayTypeSchema {}
+interface RootBooleanTypeSchema extends RootJsonSchema, BooleanTypeSchema {}
+interface RootIntegerTypeSchema extends RootJsonSchema, IntegerTypeSchema {}
+interface RootObjectTypeSchema extends RootJsonSchema, ObjectTypeSchema {}
+interface RootNullTypeSchema extends RootJsonSchema, NullTypeSchema {}
+interface RootNumberTypeSchema extends RootJsonSchema, NumberTypeSchema {}
+interface RootStringTypeSchema extends RootJsonSchema, StringTypeSchema {}
 
 export type JsonSchema =
-  | RootArrayType
-  | RootBooleanType
-  | RootIntegerType
-  | RootObjectType
-  | RootNullType
-  | RootNumberType
-  | RootStringType;
+  | RootArrayTypeSchema
+  | RootBooleanTypeSchema
+  | RootIntegerTypeSchema
+  | RootObjectTypeSchema
+  | RootNullTypeSchema
+  | RootNumberTypeSchema
+  | RootStringTypeSchema;

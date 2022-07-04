@@ -4,7 +4,7 @@ import { createDomId } from 'ember-dynamic-form/utils/dom';
 
 export interface DynamicFormWidgetsTextWidgetArgs
   extends DynamicFormWidgetsWidgetMetadataArgs {
-  value: string;
+  data: string;
 }
 
 export default class DynamicFormWidgetsTextWidget extends Component<DynamicFormWidgetsTextWidgetArgs> {

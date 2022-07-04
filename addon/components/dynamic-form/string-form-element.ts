@@ -1,6 +1,6 @@
 import {
   DataType as JsonSchemaDataType,
-  StringType,
+  StringTypeSchema,
 } from 'ember-dynamic-form/utils/types/json-schema';
 import Component from '@glimmer/component';
 import { DEFAULT_FORMAT } from 'ember-dynamic-form/utils/registry-schema';
@@ -12,30 +12,16 @@ export default class DynamicFormStringFormElement extends Component<FormFieldArg
   @service('dynamic-form/registry')
   declare registry: RegistryService;
 
-  get description() {
-    return this.args.dataSchema.description;
-  }
-
-  get title() {
-    return this.args.dataSchema.title;
-  }
-
-  get value() {
-    return this.args.data;
-  }
-
   get widget(): Component<unknown> {
-    const stringSchema = this.args.dataSchema as StringType;
-    const stringFormat = stringSchema.format ?? DEFAULT_FORMAT;
+    const dataSchema = this.args.dataSchema as StringTypeSchema;
+    const format = dataSchema.format ?? DEFAULT_FORMAT;
     const component = this.registry.getWidget({
       formId: this.args.formId,
-      format: stringFormat,
+      format,
       type: JsonSchemaDataType.String,
     });
     if (!component) {
-      throw new Error(
-        `component not defined for string format: ${stringFormat}`
-      );
+      throw new Error(`component not defined for string format: ${format}`);
     }
     return component;
   }

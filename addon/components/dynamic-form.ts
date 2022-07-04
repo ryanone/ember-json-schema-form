@@ -4,7 +4,7 @@ import {
   createFormFieldArgsList,
 } from 'ember-dynamic-form/utils/form-utils';
 import JsonSchema, {
-  JsonSchemaType,
+  JsonTypeSchema,
 } from 'ember-dynamic-form/utils/types/json-schema';
 import { TypeSchema, WidgetMap } from 'ember-dynamic-form/utils/types/registry';
 import Component from '@glimmer/component';
@@ -46,7 +46,7 @@ export default class DynamicForm extends Component<DynamicFormArgs> {
   get formFieldArgsList(): FormFieldArgs[] {
     return createFormFieldArgsList(
       this.args.data,
-      this.args.dataSchema as unknown as JsonSchemaType,
+      this.args.dataSchema as unknown as JsonTypeSchema,
       this.formId
     );
   }

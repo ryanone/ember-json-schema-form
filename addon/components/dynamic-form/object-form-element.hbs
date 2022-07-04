@@ -1,0 +1,21 @@
+<fieldset ...attributes>
+  {{#if @dataSchema.title}}
+    <legend>{{@dataSchema.title}}</legend>
+  {{/if}}
+  {{#if @dataSchema.description}}
+    <p>{{@dataSchema.description}}</p>
+  {{/if}}
+
+  {{#if this.isDefaultFormat}}
+    {{#each this.formFieldArgsList as |formFieldArgs|}}
+      <DynamicForm::FormField
+        @data={{formFieldArgs.data}}
+        @dataSchema={{formFieldArgs.dataSchema}}
+        @formId={{@formId}}
+        @elementOpts={{formFieldArgs.formElementOpts}}
+      />
+    {{/each}}
+  {{else}}
+    {{! TODO: Implement support for invoking widget based on format }}
+  {{/if}}
+</fieldset>

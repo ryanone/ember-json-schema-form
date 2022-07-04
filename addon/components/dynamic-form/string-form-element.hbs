@@ -1,7 +1,8 @@
 {{#let this.widget as |widget|}}
   <widget
-    @description={{this.description}}
-    @title={{this.title}}
-    @value={{this.value}}
+    @data={{@data}}
+    @dataSchema={{@dataSchema}}
+    @description={{@dataSchema.description}}
+    @title={{@dataSchema.title}}
     ...attributes />
 {{/let}}
