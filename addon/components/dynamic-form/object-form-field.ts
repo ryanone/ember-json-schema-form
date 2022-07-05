@@ -1,3 +1,7 @@
+// import {
+//   DataType as JsonSchemaDataType,
+//   ObjectTypeSchema,
+// } from 'ember-dynamic-form/utils/types/json-schema';
 import {
   FormFieldArgs,
   createFormFieldArgsList,
@@ -8,7 +12,7 @@ import RegistryService from 'ember-dynamic-form/services/dynamic-form/registry';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 
-export default class DynamicFormObjectFormElement extends Component<FormFieldArgs> {
+export default class DynamicFormObjectFormField extends Component<FormFieldArgs> {
   @service('dynamic-form/registry')
   declare registry: RegistryService;
 
@@ -24,4 +28,21 @@ export default class DynamicFormObjectFormElement extends Component<FormFieldArg
     const { format } = this.args.dataSchema;
     return isNone(format) || format === DEFAULT_FORMAT;
   }
+
+  // get widget(): Component<unknown> | undefined {
+  //   if (!this.isDefaultFormat) {
+  //     const dataSchema = this.args.dataSchema as ObjectTypeSchema;
+  //     const format = dataSchema.format;
+  //     const component = this.registry.getWidget({
+  //       formId: this.args.formId,
+  //       format,
+  //       type: JsonSchemaDataType.Object,
+  //     });
+  //     if (!component) {
+  //       throw new Error(`component not defined for object format: ${format}`);
+  //     }
+  //     return component;
+  //   }
+  //   return undefined;
+  // }
 }

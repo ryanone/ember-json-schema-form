@@ -12,7 +12,7 @@ export type FormData =
   | string
   | unknown[];
 
-export interface FormElementOpts {
+export interface FormElementSchema {
   name?: string;
 }
 
@@ -20,14 +20,14 @@ export interface FormFieldArgs {
   data: FormData;
   dataSchema: JsonTypeSchema;
   formId: string;
-  elementOpts?: FormElementOpts;
+  elementSchema?: FormElementSchema;
 }
 
 export function createFormFieldArgsList(
   data: FormData,
   dataSchema: JsonTypeSchema,
   formId: string,
-  name?: string
+  elementSchema?: FormElementSchema
 ): FormFieldArgs[] {
   const argsList = [];
   // TODO: Add support for array types
@@ -41,7 +41,7 @@ export function createFormFieldArgsList(
           objData && (objData[key] as Record<string, unknown>),
           objProperties[key] as JsonTypeSchema,
           formId,
-          key
+          { name: key }
         )
       );
     });
@@ -51,8 +51,8 @@ export function createFormFieldArgsList(
       dataSchema,
       formId,
     };
-    if (name) {
-      formFieldArgs.elementOpts = { name };
+    if (elementSchema) {
+      formFieldArgs.elementSchema = elementSchema;
     }
     argsList.push(formFieldArgs);
   }
