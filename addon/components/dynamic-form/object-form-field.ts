@@ -20,7 +20,10 @@ export default class DynamicFormObjectFormField extends Component<FormFieldArgs>
     return createFormFieldArgsList(
       this.args.data,
       this.args.dataSchema,
-      this.args.formId
+      this.args.formId,
+      this.args.onValueChange,
+      this.args.onValueInitialized,
+      this.args.elementSchema
     );
   }
 

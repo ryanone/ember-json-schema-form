@@ -3,6 +3,8 @@ import {
   JsonTypeSchema,
   ObjectTypeSchema,
 } from 'ember-dynamic-form/utils/types/json-schema';
+import FormValue from 'ember-dynamic-form/utils/form-value';
+import type { FormValueType } from 'ember-dynamic-form/utils/types/form';
 
 export type FormData =
   | Record<string, unknown>
@@ -12,21 +14,25 @@ export type FormData =
   | string
   | unknown[];
 
-export interface FormElementSchema {
-  name?: string;
-}
+// export interface FormElementSchema {
+// }
+export type FormElementSchema = Record<string, unknown>;
 
 export interface FormFieldArgs {
   data: FormData;
   dataSchema: JsonTypeSchema;
   formId: string;
   elementSchema?: FormElementSchema;
+  onValueChange: (name: string, value: FormValueType) => void,
+  onValueInitialized: (formValue: FormValue) => void;
 }
 
 export function createFormFieldArgsList(
   data: FormData,
   dataSchema: JsonTypeSchema,
   formId: string,
+  onValueChange: (name: string, value: FormValueType) => void,
+  onValueInitialized: (formValue: FormValue) => void,
   elementSchema?: FormElementSchema
 ): FormFieldArgs[] {
   const argsList = [];
@@ -36,12 +42,29 @@ export function createFormFieldArgsList(
     const objProperties = objSchema.properties;
     const objData = data && (data as Record<string, unknown>);
     Object.keys(objProperties).forEach((key) => {
+      let propertyFormElementSchema: FormElementSchema;
+      if (elementSchema && elementSchema[key]) {
+        propertyFormElementSchema = elementSchema[key] as FormElementSchema;
+      } else {
+        propertyFormElementSchema = {
+          'widget:name': key,
+        };
+      }
+      if (
+        !propertyFormElementSchema ||
+        !propertyFormElementSchema['widget:name']
+      ) {
+        propertyFormElementSchema['widget:name'] = key;
+      }
+
       argsList.push(
         ...createFormFieldArgsList(
           objData && (objData[key] as Record<string, unknown>),
           objProperties[key] as JsonTypeSchema,
           formId,
-          { name: key }
+          onValueChange,
+          onValueInitialized,
+          propertyFormElementSchema
         )
       );
     });
@@ -50,6 +73,8 @@ export function createFormFieldArgsList(
       data,
       dataSchema,
       formId,
+      onValueChange,
+      onValueInitialized,
     };
     if (elementSchema) {
       formFieldArgs.elementSchema = elementSchema;

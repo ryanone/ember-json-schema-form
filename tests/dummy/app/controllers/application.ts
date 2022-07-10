@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 
 export default class ApplicationController extends Controller {
   get data() {
@@ -39,5 +40,21 @@ export default class ApplicationController extends Controller {
         },
       },
     };
+  }
+
+  get elementSchema(): Record<string, unknown> {
+    return {
+      firstName: {
+        'widget:name': 'person.firstName',
+      },
+      lastName: {
+        'widget:name': 'person.lastName',
+      },
+    };
+  }
+
+  @action
+  onFormSubmit(data: Record<string, unknown>) {
+    console.log('onFormSubmit: %o', data);
   }
 }

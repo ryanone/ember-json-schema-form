@@ -3,7 +3,8 @@
     @data={{@data}}
     @dataSchema={{@dataSchema}}
     @description={{@dataSchema.description}}
-    @name={{@elementSchema.name}}
+    @name={{this.formElementName}}
+    @onValueChange={{@onValueChange}}
     @title={{@dataSchema.title}}
     ...attributes />
 {{/let}}

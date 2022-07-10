@@ -4,5 +4,8 @@
     @dataSchema={{@dataSchema}}
     @elementSchema={{@elementSchema}}
     @formId={{this.formId}}
+    @onValueChange={{this.onValueChange}}
+    @onValueInitialized={{this.onValueInitialized}}
   />
+  <button type="submit" {{on "click" this.onSubmitClick}}>Submit</button>
 </form>
