@@ -1,10 +1,9 @@
 {{#let this.widget as |widget|}}
   <widget
-    @data={{@data}}
-    @dataSchema={{@dataSchema}}
     @description={{@dataSchema.description}}
     @name={{this.formElementName}}
     @onValueChange={{@onValueChange}}
     @title={{@dataSchema.title}}
+    @value={{@data}}
     ...attributes />
 {{/let}}

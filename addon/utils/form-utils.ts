@@ -14,8 +14,6 @@ export type FormData =
   | string
   | unknown[];
 
-// export interface FormElementSchema {
-// }
 export type FormElementSchema = Record<string, unknown>;
 
 export interface FormFieldArgs {

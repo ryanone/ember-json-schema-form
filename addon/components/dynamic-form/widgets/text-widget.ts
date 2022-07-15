@@ -1,17 +1,9 @@
 import Component from '@glimmer/component';
-import { DynamicFormWidgetsWidgetMetadataArgs } from 'ember-dynamic-form/components/dynamic-form/widgets/widget-metadata';
+import type { WidgetArgs } from 'ember-dynamic-form/utils/types/widget';
 import { action } from '@ember/object';
 import { createDomId } from 'ember-dynamic-form/utils/dom';
-import { FormValueType } from 'ember-dynamic-form/utils/types/form';
 
-export interface DynamicFormWidgetsTextWidgetArgs
-  extends DynamicFormWidgetsWidgetMetadataArgs {
-  data: string;
-  name: string;
-  onValueChange: (name: string, value: FormValueType) => void;
-}
-
-export default class DynamicFormWidgetsTextWidget extends Component<DynamicFormWidgetsTextWidgetArgs> {
+export default class DynamicFormWidgetsTextWidget extends Component<WidgetArgs> {
   get inputId() {
     return createDomId(this);
   }
