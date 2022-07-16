@@ -6,4 +6,11 @@
   @data={{this.data}}
   @dataSchema={{this.dataSchema}}
   @elementSchema={{this.elementSchema}}
-  @onFormSubmit={{this.onFormSubmit}}/>
+  @onFormSubmit={{this.onFormSubmit}}>
+  <:header>
+    <button type="submit">Give me your data</button>
+  </:header>
+
+  {{! This is needed otherwise (has-block) will not return the correct value}}
+  <:default></:default>
+</DynamicForm>

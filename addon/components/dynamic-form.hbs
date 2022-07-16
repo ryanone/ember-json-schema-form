@@ -1,4 +1,7 @@
-<form method="POST" ...attributes>
+<form method="POST" {{on "submit" this.onFormSubmit}} ...attributes>
+  {{#if (has-block)}}
+    {{yield to="header"}}
+  {{/if}}
   <DynamicForm::FormField
     @data={{@data}}
     @dataSchema={{@dataSchema}}
@@ -7,5 +10,9 @@
     @onValueChange={{this.onValueChange}}
     @onValueInitialized={{this.onValueInitialized}}
   />
-  <button type="submit" {{on "click" this.onSubmitClick}}>Submit</button>
+  {{#if (has-block)}}
+    {{yield to="footer"}}
+  {{else}}
+    <button type="submit">{{this.submitButtonText}}</button>
+  {{/if}}
 </form>

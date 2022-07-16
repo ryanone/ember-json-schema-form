@@ -50,6 +50,9 @@ export default class ApplicationController extends Controller {
       lastName: {
         'widget:name': 'person.lastName',
       },
+      'form:submitButton': {
+        text: 'Submit your information',
+      },
     };
   }
 

@@ -4,6 +4,7 @@ import { FormData } from 'ember-dynamic-form/utils/form-utils';
 import FormState from 'ember-dynamic-form/utils/form-state';
 import FormValue from 'ember-dynamic-form/utils/form-value';
 import type { FormValueType } from 'ember-dynamic-form/utils/types/form';
+import type { FormElementSchema } from 'ember-dynamic-form/utils/form-utils';
 import JsonSchema from 'ember-dynamic-form/utils/types/json-schema';
 import RegistryService from 'ember-dynamic-form/services/dynamic-form/registry';
 import { action } from '@ember/object';
@@ -15,6 +16,7 @@ interface DynamicFormArgs {
   dataSchema: JsonSchema;
   onFormSubmit: (data: Record<string, unknown>) => void;
   dataTypeSchema?: TypeSchema;
+  elementSchema?: FormElementSchema;
   widgets?: WidgetMap;
 }
 
@@ -37,8 +39,16 @@ export default class DynamicForm extends Component<DynamicFormArgs> {
     });
   }
 
+  get submitButtonText(): string {
+    const submitButtonOpts = this.args.elementSchema?.['form:submitButton'];
+    if (submitButtonOpts) {
+      return (submitButtonOpts as Record<string, string>)['text'] as string;
+    }
+    return 'Submit';
+  }
+
   @action
-  onSubmitClick(e: Event) {
+  onFormSubmit(e: Event) {
     e.preventDefault();
     if (this.formState.isValid) {
       this.args.onFormSubmit(this.formState.serialize());
