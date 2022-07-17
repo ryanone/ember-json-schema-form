@@ -5,11 +5,13 @@
 <DynamicForm
   @data={{this.data}}
   @dataSchema={{this.dataSchema}}
+  @dataTypeSchema={{this.dataTypeSchema}}
   @elementSchema={{this.elementSchema}}
-  @onFormSubmit={{this.onFormSubmit}}>
-  <:header>
+  @onFormSubmit={{this.onFormSubmit}}
+  @widgets={{this.widgets}}>
+  <:footer>
     <button type="submit">Give me your data</button>
-  </:header>
+  </:footer>
 
   {{! This is needed otherwise (has-block) will not return the correct value}}
   <:default></:default>
