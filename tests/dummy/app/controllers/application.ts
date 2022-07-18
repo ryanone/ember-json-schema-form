@@ -12,6 +12,7 @@ export default class ApplicationController extends Controller {
     return {
       creditCardNumber: '4988 4388 4388 4305',
       cvv: '053',
+      $type: 'com.linkedin.payments.paymentmethod.CreditCard',
     };
   }
 
@@ -19,13 +20,19 @@ export default class ApplicationController extends Controller {
     return {
       title: 'Credit Card Panel',
       type: 'object',
-      format: 'credit-card',
+      // format: 'credit-card',
       properties: {
         creditCardNumber: {
+          title: 'Credit card number',
           type: 'string',
         },
         cvv: {
+          title: 'CVV',
           type: 'string',
+        },
+        $type: {
+          type: 'string',
+          format: 'hidden',
         },
       },
     };
@@ -60,13 +67,13 @@ export default class ApplicationController extends Controller {
     // return { type: 'string' };
   }
 
-  get dataTypeSchema(): Record<string, unknown> {
-    return {
-      object: {
-        'credit-card': 'CreditCardPanel',
-      },
-    };
-  }
+  // get dataTypeSchema(): Record<string, unknown> {
+  //   return {
+  //     object: {
+  //       'credit-card': 'CreditCardPanel',
+  //     },
+  //   };
+  // }
 
   get elementSchema(): Record<string, unknown> {
     // return {
@@ -87,6 +94,9 @@ export default class ApplicationController extends Controller {
       },
       cvv: {
         'widget:name': 'paymentMethod.creditCardCvv',
+      },
+      hidden: {
+        'widget:name': 'paymentMethod.$type',
       },
     };
   }

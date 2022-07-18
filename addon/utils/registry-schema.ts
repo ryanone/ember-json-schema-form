@@ -4,6 +4,7 @@ import {
   WidgetMap,
 } from 'ember-dynamic-form/utils/types/registry';
 import Component from '@glimmer/component';
+import HiddenInputWidget from 'ember-dynamic-form/components/dynamic-form/widgets/hidden-input-widget';
 import { DataType as JsonSchemaDataType } from 'ember-dynamic-form/utils/types/json-schema';
 import TextWidget from 'ember-dynamic-form/components/dynamic-form/widgets/text-widget';
 
@@ -50,15 +51,19 @@ widget map
 */
 
 export const DEFAULT_FORMAT = 'default';
+export const HIDDEN_FORMAT = 'hidden';
 const TEXT_INPUT_WIDGET_ID = 'TextInput';
+const HIDDEN_INPUT_WIDGET_ID = 'HiddenInput';
 
 const DEFAULT_TYPE_SCHEMA: TypeSchema = {
   [JsonSchemaDataType.String]: {
     [DEFAULT_FORMAT]: TEXT_INPUT_WIDGET_ID,
+    [HIDDEN_FORMAT]: HIDDEN_INPUT_WIDGET_ID,
   },
 };
 
 const DEFAULT_WIDGET_MAP: WidgetMap = {
+  [HIDDEN_INPUT_WIDGET_ID]: HiddenInputWidget,
   [TEXT_INPUT_WIDGET_ID]: TextWidget,
 };
 
