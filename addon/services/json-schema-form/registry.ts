@@ -1,7 +1,10 @@
-import { TypeSchema, WidgetMap } from 'ember-dynamic-form/utils/types/registry';
-import { DataType as JsonSchemaDataType } from 'ember-dynamic-form/utils/types/json-schema';
+import {
+  TypeSchema,
+  WidgetMap,
+} from 'ember-json-schema-form/utils/types/registry';
+import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
 import Component from '@glimmer/component';
-import RegistrySchema from 'ember-dynamic-form/utils/registry-schema';
+import RegistrySchema from 'ember-json-schema-form/utils/registry-schema';
 import Service from '@ember/service';
 
 type CreateOpts = {
@@ -16,7 +19,7 @@ type GetWidgetOpts = {
   type: JsonSchemaDataType;
 };
 
-export default class EmberDynamicFormRegistry extends Service {
+export default class JsonSchemaFormRegistry extends Service {
   #registrySchemas: Record<string, RegistrySchema> = {};
 
   /**
@@ -44,6 +47,6 @@ export default class EmberDynamicFormRegistry extends Service {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'dynamic-form/registry': EmberDynamicFormRegistry;
+    'json-schema-form/registry': JsonSchemaFormRegistry;
   }
 }

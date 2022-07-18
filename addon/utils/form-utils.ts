@@ -2,9 +2,9 @@ import {
   DataType,
   JsonTypeSchema,
   ObjectTypeSchema,
-} from 'ember-dynamic-form/utils/types/json-schema';
-import FormValue from 'ember-dynamic-form/utils/form-value';
-import type { FormValueType } from 'ember-dynamic-form/utils/types/form';
+} from 'ember-json-schema-form/utils/types/json-schema';
+import FormValue from 'ember-json-schema-form/utils/form-value';
+import type { FormValueType } from 'ember-json-schema-form/utils/types/form';
 
 export type FormData =
   | Record<string, unknown>
@@ -21,7 +21,7 @@ export interface FormFieldArgs {
   dataSchema: JsonTypeSchema;
   formId: string;
   elementSchema?: FormElementSchema;
-  onValueChange: (name: string, value: FormValueType) => void,
+  onValueChange: (name: string, value: FormValueType) => void;
   onValueInitialized: (formValue: FormValue) => void;
 }
 

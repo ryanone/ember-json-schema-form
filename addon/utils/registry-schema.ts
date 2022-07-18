@@ -2,11 +2,11 @@ import {
   TypeRegistry,
   TypeSchema,
   WidgetMap,
-} from 'ember-dynamic-form/utils/types/registry';
+} from 'ember-json-schema-form/utils/types/registry';
 import Component from '@glimmer/component';
-import HiddenInputWidget from 'ember-dynamic-form/components/dynamic-form/widgets/hidden-input-widget';
-import { DataType as JsonSchemaDataType } from 'ember-dynamic-form/utils/types/json-schema';
-import TextWidget from 'ember-dynamic-form/components/dynamic-form/widgets/text-widget';
+import HiddenInputWidget from 'ember-json-schema-form/components/json-schema-form/widgets/hidden-input-widget';
+import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
+import TextWidget from 'ember-json-schema-form/components/json-schema-form/widgets/text-widget';
 
 /*
 type registry

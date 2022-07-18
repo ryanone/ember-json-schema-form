@@ -1,4 +1,4 @@
-ember-dynamic-form
+ember-json-schema-form
 ==============================================================================
 
 [Short description of the addon.]
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-dynamic-form
+ember install ember-json-schema-form
 ```
 
 

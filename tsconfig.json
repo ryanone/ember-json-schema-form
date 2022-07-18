@@ -78,16 +78,16 @@
         "tests/dummy/app/*",
         "app/*"
       ],
-      "ember-dynamic-form": [
+      "ember-json-schema-form": [
         "addon"
       ],
-      "ember-dynamic-form/*": [
+      "ember-json-schema-form/*": [
         "addon/*"
       ],
-      "ember-dynamic-form/test-support": [
+      "ember-json-schema-form/test-support": [
         "addon-test-support"
       ],
-      "ember-dynamic-form/test-support/*": [
+      "ember-json-schema-form/test-support/*": [
         "addon-test-support/*"
       ],
       "*": [

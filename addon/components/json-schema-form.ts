@@ -1,17 +1,20 @@
-import { TypeSchema, WidgetMap } from 'ember-dynamic-form/utils/types/registry';
+import {
+  TypeSchema,
+  WidgetMap,
+} from 'ember-json-schema-form/utils/types/registry';
 import Component from '@glimmer/component';
-import { FormData } from 'ember-dynamic-form/utils/form-utils';
-import FormState from 'ember-dynamic-form/utils/form-state';
-import FormValue from 'ember-dynamic-form/utils/form-value';
-import type { FormValueType } from 'ember-dynamic-form/utils/types/form';
-import type { FormElementSchema } from 'ember-dynamic-form/utils/form-utils';
-import JsonSchema from 'ember-dynamic-form/utils/types/json-schema';
-import RegistryService from 'ember-dynamic-form/services/dynamic-form/registry';
+import { FormData } from 'ember-json-schema-form/utils/form-utils';
+import FormState from 'ember-json-schema-form/utils/form-state';
+import FormValue from 'ember-json-schema-form/utils/form-value';
+import type { FormValueType } from 'ember-json-schema-form/utils/types/form';
+import type { FormElementSchema } from 'ember-json-schema-form/utils/form-utils';
+import JsonSchema from 'ember-json-schema-form/utils/types/json-schema';
+import RegistryService from 'ember-json-schema-form/services/json-schema-form/registry';
 import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
 
-interface DynamicFormArgs {
+interface JsonSchemaFormArgs {
   data: FormData;
   dataSchema: JsonSchema;
   onFormSubmit: (data: Record<string, unknown>) => void;
@@ -20,15 +23,15 @@ interface DynamicFormArgs {
   widgets?: WidgetMap;
 }
 
-export default class DynamicForm extends Component<DynamicFormArgs> {
+export default class JsonSchemaForm extends Component<JsonSchemaFormArgs> {
   formId: string;
 
   formState: FormState;
 
-  @service('dynamic-form/registry')
+  @service('json-schema-form/registry')
   declare registry: RegistryService;
 
-  constructor(owner: unknown, args: DynamicFormArgs) {
+  constructor(owner: unknown, args: JsonSchemaFormArgs) {
     super(owner, args);
     this.formId = guidFor(this);
     this.formState = new FormState();

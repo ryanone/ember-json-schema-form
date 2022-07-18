@@ -1,1 +1,1 @@
-export { default } from 'ember-dynamic-form/utils/dom';
+export { default } from 'ember-json-schema-form/utils/dom';

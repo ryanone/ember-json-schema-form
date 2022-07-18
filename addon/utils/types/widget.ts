@@ -1,5 +1,5 @@
-import type { FormData } from 'ember-dynamic-form/utils/form-utils';
-import type { FormValueType } from 'ember-dynamic-form/utils/types/form';
+import type { FormData } from 'ember-json-schema-form/utils/form-utils';
+import type { FormValueType } from 'ember-json-schema-form/utils/types/form';
 
 // export interface WidgetEnum<ValueType> {
 //   key: string;

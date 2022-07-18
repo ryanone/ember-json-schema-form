@@ -1,21 +1,21 @@
 import {
   DataType as JsonSchemaDataType,
   ObjectTypeSchema,
-} from 'ember-dynamic-form/utils/types/json-schema';
+} from 'ember-json-schema-form/utils/types/json-schema';
 import {
   FormFieldArgs,
   createFormFieldArgsList,
-} from 'ember-dynamic-form/utils/form-utils';
+} from 'ember-json-schema-form/utils/form-utils';
 import Component from '@glimmer/component';
-import { DEFAULT_FORMAT } from 'ember-dynamic-form/utils/registry-schema';
-import FormValue from 'ember-dynamic-form/utils/form-value';
-import RegistryService from 'ember-dynamic-form/services/dynamic-form/registry';
+import { DEFAULT_FORMAT } from 'ember-json-schema-form/utils/registry-schema';
+import FormValue from 'ember-json-schema-form/utils/form-value';
+import RegistryService from 'ember-json-schema-form/services/json-schema-form/registry';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
 
-export default class DynamicFormObjectFormField extends Component<FormFieldArgs> {
-  @service('dynamic-form/registry')
+export default class JsonSchemaFormObjectFormField extends Component<FormFieldArgs> {
+  @service('json-schema-form/registry')
   declare registry: RegistryService;
 
   @tracked

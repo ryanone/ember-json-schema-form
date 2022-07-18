@@ -1,9 +1,9 @@
 import Component from '@glimmer/component';
-import type { WidgetArgs } from 'ember-dynamic-form/utils/types/widget';
+import type { WidgetArgs } from 'ember-json-schema-form/utils/types/widget';
 import { action } from '@ember/object';
-import { createDomId } from 'ember-dynamic-form/utils/dom';
+import { createDomId } from 'ember-json-schema-form/utils/dom';
 
-export default class DynamicFormWidgetsTextWidget extends Component<WidgetArgs> {
+export default class JsonSchemaFormWidgetsTextWidget extends Component<WidgetArgs> {
   get inputId() {
     return createDomId(this);
   }

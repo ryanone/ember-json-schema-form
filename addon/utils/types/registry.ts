@@ -1,4 +1,4 @@
-import type { DataType as JsonSchemaDataType } from 'ember-dynamic-form/utils/types/json-schema';
+import type { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
 
 /**
  * Ex.

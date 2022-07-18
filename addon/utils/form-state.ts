@@ -1,4 +1,4 @@
-import FormValue from 'ember-dynamic-form/utils/form-value';
+import FormValue from 'ember-json-schema-form/utils/form-value';
 import { set } from 'lodash-es';
 
 export default class FormState {
