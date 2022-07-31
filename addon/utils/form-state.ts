@@ -19,7 +19,7 @@ export default class FormState {
     );
   }
 
-  serialize() {
+  serialize(): Record<string, unknown> {
     const serialized = {};
     this.getValues().forEach((formValue) => {
       set(serialized, formValue.name as string, formValue.value);

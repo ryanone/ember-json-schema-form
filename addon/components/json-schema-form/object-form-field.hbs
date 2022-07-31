@@ -1,5 +1,5 @@
-<fieldset ...attributes>
-  {{#if this.isDefaultFormat}}
+{{#if this.isDefaultFormat}}
+  <fieldset ...attributes>
     {{#if @dataSchema.title}}
       <legend>{{@dataSchema.title}}</legend>
     {{/if}}
@@ -16,16 +16,17 @@
         @onValueInitialized={{formFieldArgs.onValueInitialized}}
       />
     {{/each}}
-  {{else}}
-    {{! TODO: Implement support for invoking widget based on format }}
-    {{#let this.widget as |widget|}}
-      <widget
-        @description={{@dataSchema.description}}
-        @name={{this.formElementName}}
-        @onValueChange={{@onValueChange}}
-        @title={{@dataSchema.title}}
-        @value={{@data}}
-        ...attributes/>
-    {{/let}}
-  {{/if}}
-</fieldset>
+  </fieldset>
+{{else}}
+  {{! TODO: Implement support for invoking widget based on format }}
+  {{#let this.widget as |widget|}}
+    <widget
+      @description={{@dataSchema.description}}
+      @errorMessage={{this.formValue.errorMessage}}
+      @name={{this.formValue.name}}
+      @onValueChange={{@onValueChange}}
+      @title={{@dataSchema.title}}
+      @value={{@data}}
+      ...attributes/>
+  {{/let}}
+{{/if}}

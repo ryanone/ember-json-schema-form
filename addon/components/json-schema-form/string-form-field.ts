@@ -2,20 +2,21 @@ import {
   DataType as JsonSchemaDataType,
   StringTypeSchema,
 } from 'ember-json-schema-form/utils/types/json-schema';
+import {
+  FormFieldArgs,
+  ValidateFn,
+} from 'ember-json-schema-form/utils/form-utils';
 import Component from '@glimmer/component';
 import { DEFAULT_FORMAT } from 'ember-json-schema-form/utils/registry-schema';
-import { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
 import FormValue from 'ember-json-schema-form/utils/form-value';
 import RegistryService from 'ember-json-schema-form/services/json-schema-form/registry';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 
 export default class JsonSchemaFormStringFormField extends Component<FormFieldArgs> {
   @service('json-schema-form/registry')
   declare registry: RegistryService;
 
-  @tracked
-  formElementName: string;
+  formValue: FormValue;
 
   constructor(owner: unknown, args: FormFieldArgs) {
     super(owner, args);
@@ -26,8 +27,14 @@ export default class JsonSchemaFormStringFormField extends Component<FormFieldAr
     if (!formElementName) {
       throw new Error('No name specified for this form field');
     }
-    this.formElementName = formElementName as string;
-    formValue.name = this.formElementName;
+    formValue.name = formElementName as string;
+    if (this.args.elementSchema?.['widget:validate']) {
+      const validateFn: ValidateFn = this.args.elementSchema[
+        'widget:validate'
+      ] as ValidateFn;
+      formValue.validateFn = validateFn;
+    }
+    this.formValue = formValue;
     this.args.onValueInitialized(formValue);
   }
 

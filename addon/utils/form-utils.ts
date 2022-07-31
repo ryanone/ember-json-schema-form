@@ -14,6 +14,11 @@ export type FormData =
   | string
   | unknown[];
 
+export type ValidateFn = (
+  value: FormValueType,
+  formData: FormData
+) => string | undefined;
+
 export type FormElementSchema = Record<string, unknown>;
 
 export interface FormFieldArgs {
@@ -21,6 +26,7 @@ export interface FormFieldArgs {
   dataSchema: JsonTypeSchema;
   formId: string;
   elementSchema?: FormElementSchema;
+  errorMessage?: string;
   onValueChange: (name: string, value: FormValueType) => void;
   onValueInitialized: (formValue: FormValue) => void;
 }

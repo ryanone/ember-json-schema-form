@@ -4,6 +4,9 @@
     @formFieldId={{this.formFieldId}}
     @title={{@title}}
   />
+  {{#if @errorMessage}}
+    <p>{{@errorMessage}}</p>
+  {{/if}}
   <input
     id={{this.inputId}}
     name={{@name}}

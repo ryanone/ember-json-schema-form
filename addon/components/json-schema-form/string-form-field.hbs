@@ -1,7 +1,8 @@
 {{#let this.widget as |widget|}}
   <widget
     @description={{@dataSchema.description}}
-    @name={{this.formElementName}}
+    @errorMessage={{this.formValue.errorMessage}}
+    @name={{this.formValue.name}}
     @onValueChange={{@onValueChange}}
     @title={{@dataSchema.title}}
     @value={{@data}}

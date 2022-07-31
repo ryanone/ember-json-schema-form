@@ -13,6 +13,7 @@ import RegistryService from 'ember-json-schema-form/services/json-schema-form/re
 import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
 
 interface JsonSchemaFormArgs {
   data: FormData;
@@ -21,6 +22,11 @@ interface JsonSchemaFormArgs {
   dataTypeSchema?: TypeSchema;
   elementSchema?: FormElementSchema;
   widgets?: WidgetMap;
+  validate?: (
+    path: string,
+    value: FormValueType,
+    formData: Record<string, unknown> | FormValueType
+  ) => string | undefined;
 }
 
 export default class JsonSchemaForm extends Component<JsonSchemaFormArgs> {
@@ -47,14 +53,25 @@ export default class JsonSchemaForm extends Component<JsonSchemaFormArgs> {
     if (submitButtonOpts) {
       return (submitButtonOpts as Record<string, string>)['text'] as string;
     }
+    // TODO: Support this being an argument
     return 'Submit';
   }
 
   @action
   onFormSubmit(e: Event) {
     e.preventDefault();
-    if (this.formState.isValid) {
-      this.args.onFormSubmit(this.formState.serialize());
+    const serialized = this.formState.serialize();
+    const formValues = this.formState.getValues();
+    const isValid = formValues.reduce((prevIsValid, formValue) => {
+      if (formValue.validateFn) {
+        const errorMessage = formValue.validateFn(formValue?.value, serialized);
+        formValue.errorMessage = errorMessage;
+        return prevIsValid && isNone(errorMessage);
+      }
+      return prevIsValid && true;
+    }, true);
+    if (isValid) {
+      this.args.onFormSubmit(serialized);
     }
   }
 

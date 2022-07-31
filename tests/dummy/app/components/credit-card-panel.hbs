@@ -1,4 +1,7 @@
 <div>Credit card panel</div>
+{{#if @errorMessage}}
+  <p>{{@errorMessage}}</p>
+{{/if}}
 <ol>
   <li>
     <label for="credit-card-number">Credit card number</label>
