@@ -44,33 +44,21 @@ export function createFormFieldArgsList(
   if (dataSchema.type === DataType.Object) {
     const objSchema = dataSchema as unknown as ObjectTypeSchema;
     const objProperties = objSchema.properties;
-    const objData = data && (data as Record<string, unknown>);
+    const objData = data && (data as Record<string, FormData>);
     Object.keys(objProperties).forEach((key) => {
-      let propertyFormElementSchema: FormElementSchema;
-      if (elementSchema && elementSchema[key]) {
-        propertyFormElementSchema = elementSchema[key] as FormElementSchema;
-      } else {
-        propertyFormElementSchema = {
-          'widget:name': key,
-        };
-      }
-      if (
-        !propertyFormElementSchema ||
-        !propertyFormElementSchema['widget:name']
-      ) {
-        propertyFormElementSchema['widget:name'] = key;
-      }
-
-      argsList.push(
-        ...createFormFieldArgsList(
-          objData && (objData[key] as Record<string, unknown>),
-          objProperties[key] as JsonTypeSchema,
-          formId,
-          onValueChange,
-          onValueInitialized,
-          propertyFormElementSchema
-        )
-      );
+      const propertyElementSchema: FormElementSchema =
+        elementSchema && elementSchema[key]
+          ? (elementSchema[key] as FormElementSchema)
+          : { 'widget:name': key };
+      const formFieldArgs: FormFieldArgs = {
+        data: objData && (objData[key] as FormData),
+        dataSchema: objProperties && (objProperties[key] as JsonTypeSchema),
+        formId,
+        elementSchema: propertyElementSchema,
+        onValueChange,
+        onValueInitialized,
+      };
+      argsList.push(formFieldArgs);
     });
   } else {
     const formFieldArgs: FormFieldArgs = {
