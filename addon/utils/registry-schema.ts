@@ -7,6 +7,7 @@ import Component from '@glimmer/component';
 import HiddenInputWidget from 'ember-json-schema-form/components/json-schema-form/widgets/hidden-input-widget';
 import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
 import TextWidget from 'ember-json-schema-form/components/json-schema-form/widgets/text-widget';
+import type { TypeFormatToWidgetIdMap } from 'ember-json-schema-form/utils/types/registry';
 
 /*
 type registry
@@ -85,12 +86,19 @@ export default class RegistrySchema {
           ...widgetMap,
         }
       : DEFAULT_WIDGET_MAP;
-    const mergedTypeSchema: TypeSchema = typeSchema
-      ? {
-          ...DEFAULT_TYPE_SCHEMA,
-          ...typeSchema,
-        }
-      : DEFAULT_TYPE_SCHEMA;
+    const mergedTypeSchema: TypeSchema = { ...DEFAULT_TYPE_SCHEMA };
+    if (typeSchema) {
+      Object.keys(typeSchema).forEach((key) => {
+        const typeSchemaKey = key as JsonSchemaDataType;
+        const currTypeSchema =
+          mergedTypeSchema[typeSchemaKey] ??
+          (mergedTypeSchema[typeSchemaKey] as TypeFormatToWidgetIdMap);
+        mergedTypeSchema[typeSchemaKey] = {
+          ...currTypeSchema,
+          ...typeSchema[typeSchemaKey],
+        };
+      });
+    }
     Object.keys(mergedTypeSchema).forEach((type) => {
       const dataType = type as JsonSchemaDataType;
       const formatWidgetIdMap = mergedTypeSchema[dataType];
