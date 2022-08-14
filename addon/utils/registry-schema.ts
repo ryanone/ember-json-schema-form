@@ -3,68 +3,34 @@ import {
   TypeSchema,
   WidgetMap,
 } from 'ember-json-schema-form/utils/types/registry';
+import AutocompleteWidget from 'ember-json-schema-form/components/json-schema-form/widgets/autocomplete-widget';
 import Component from '@glimmer/component';
 import HiddenInputWidget from 'ember-json-schema-form/components/json-schema-form/widgets/hidden-input-widget';
+import SelectWidget from 'ember-json-schema-form/components/json-schema-form/widgets/select-widget';
 import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
 import TextWidget from 'ember-json-schema-form/components/json-schema-form/widgets/text-widget';
 import type { TypeFormatToWidgetIdMap } from 'ember-json-schema-form/utils/types/registry';
 
-/*
-type registry
-{
-  "string": {
-    "default": TextWidget,
-    "email": TextWidget
-  }
-}
-
-type schema
-
-{
-  [type: string]: {
-    [format: string]: [widgetId: string]
-  }
-}
-
-{
-  "string": {
-    "default": "TextInput",
-    "email": "TextInput",
-    "date-time": "DateTimeInput"
-  },
-  "object": {
-    "default": "ObjectInput",
-    "credit-card": "CreditCardIframeInput"
-  }
-}
-
-widget map
-
-{
-  [widgetId: string]:
-}
-
-{
-  "IframeInput": CreditCardIframeWidget
-  "ObjectInput"
-}
-
-*/
-
 export const DEFAULT_FORMAT = 'default';
 export const HIDDEN_FORMAT = 'hidden';
-const TEXT_INPUT_WIDGET_ID = 'TextInput';
+export const SELECT_FORMAT = 'select';
+const AUTOCOMPLETE_WIDGET_ID = 'Autocomplete';
 const HIDDEN_INPUT_WIDGET_ID = 'HiddenInput';
+const SELECT_WIDGET_ID = 'Select';
+const TEXT_INPUT_WIDGET_ID = 'TextInput';
 
 const DEFAULT_TYPE_SCHEMA: TypeSchema = {
   [JsonSchemaDataType.String]: {
     [DEFAULT_FORMAT]: TEXT_INPUT_WIDGET_ID,
     [HIDDEN_FORMAT]: HIDDEN_INPUT_WIDGET_ID,
+    [SELECT_FORMAT]: SELECT_WIDGET_ID,
   },
 };
 
 const DEFAULT_WIDGET_MAP: WidgetMap = {
+  [AUTOCOMPLETE_WIDGET_ID]: AutocompleteWidget,
   [HIDDEN_INPUT_WIDGET_ID]: HiddenInputWidget,
+  [SELECT_WIDGET_ID]: SelectWidget,
   [TEXT_INPUT_WIDGET_ID]: TextWidget,
 };
 

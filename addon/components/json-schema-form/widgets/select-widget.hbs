@@ -1,0 +1,28 @@
+<div class="select-widget" ...attributes>
+  <JsonSchemaForm::Widgets::WidgetMetadata
+    @description={{@description}}
+    @formFieldId={{this.formElementId}}
+    @title={{@title}}
+  />
+  {{#if @errorMessage}}
+    <p>{{@errorMessage}}</p>
+  {{/if}}
+  <select
+    id={{this.formElementId}}
+    name={{@name}}
+    class="select-widget__select"
+    {{on "change" this.onOptionSelect}}>
+    {{#if @placeholder}}
+      <option value="">{{@placeholder}}</option>
+    {{/if}}
+    {{#each this.selectOptions as |selectOption|}}
+      <option value={{selectOption.value}} selected={{if selectOption.selected true false}}>
+        {{#if selectOption.label}}
+          {{selectOption.label}}
+        {{else}}
+          {{selectOption.value}}
+        {{/if}}
+      </option>
+    {{/each}}
+  </select>
+</div>

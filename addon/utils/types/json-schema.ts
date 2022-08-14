@@ -47,10 +47,14 @@ export interface ArrayTypeSchema extends BaseDataTypeSchema {
 
 export interface BooleanTypeSchema extends BaseDataTypeSchema {
   type: DataType.Boolean;
+  anyOf?: BooleanTypeSchema[];
+  enum?: boolean[];
 }
 
 export interface IntegerTypeSchema extends BaseDataTypeSchema {
   type: DataType.Integer;
+  anyOf?: NumberTypeSchema[];
+  enum?: number[];
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/object.html
@@ -66,12 +70,16 @@ export interface NullTypeSchema extends BaseDataTypeSchema {
 
 export interface NumberTypeSchema extends BaseDataTypeSchema {
   type: DataType.Number;
+  anyOf?: NumberTypeSchema[];
+  enum?: number[];
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/string.html
 export interface StringTypeSchema extends BaseDataTypeSchema {
   type: DataType.String;
   format?: StringFormat;
+  anyOf?: StringTypeSchema[];
+  enum?: string[];
 }
 
 export type JsonTypeSchema =

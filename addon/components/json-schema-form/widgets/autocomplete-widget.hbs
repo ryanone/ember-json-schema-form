@@ -1,0 +1,28 @@
+<div class="autocomplete-widget" ...attributes>
+  <JsonSchemaForm::Widgets::WidgetMetadata
+    @description={{@description}}
+    @formElementId={{this.formElementId}}
+    @title={{@title}}
+  />
+  {{#if @errorMessage}}
+    <p>{{@errorMessage}}</p>
+  {{/if}}
+  <input
+    id={{this.formElementId}}
+    list={{this.datalistId}}
+    name={{@name}}
+    value={{@value}}
+    {{on "input" this.onValueChange}}
+    class="autocomplete-widget__input">
+  <datalist id={{this.datalistId}}>
+    {{#each this.datalistOptions as |datalistOption|}}
+      <option value={{datalistOption.value}} selected={{if datalistOption.selected true false}}>
+        {{#if datalistOption.label}}
+          {{datalistOption.label}}
+        {{else}}
+          {{datalistOption.value}}
+        {{/if}}
+      </option>
+    {{/each}}
+  </datalist>
+</div>

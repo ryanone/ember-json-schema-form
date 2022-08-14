@@ -15,10 +15,16 @@ import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 
+interface OnValueChangeArgs {
+  name: string;
+  value: FormValueType;
+}
+
 interface JsonSchemaFormArgs {
   data: FormData;
   dataSchema: JsonSchema;
   onFormSubmit: (data: Record<string, unknown>) => void;
+  onValueChange?: (formValue: OnValueChangeArgs) => void;
   dataTypeSchema?: TypeSchema;
   elementSchema?: FormElementSchema;
   widgets?: WidgetMap;
@@ -80,6 +86,12 @@ export default class JsonSchemaForm extends Component<JsonSchemaFormArgs> {
     const formValue = this.formState.get(name);
     if (formValue) {
       formValue.value = value;
+      if (this.args.onValueChange) {
+        this.args.onValueChange({
+          name: formValue.name,
+          value: formValue.value,
+        });
+      }
     }
   }
 

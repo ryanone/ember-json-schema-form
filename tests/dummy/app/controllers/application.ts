@@ -3,26 +3,42 @@ import Controller from '@ember/controller';
 import CreditCardPanelComponent from '../components/credit-card-panel';
 import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 import { action } from '@ember/object';
+import { tracked } from 'tracked-built-ins';
+
+interface OnValueChangeArgs {
+  name: string;
+  value: FormValueType;
+}
 
 export default class ApplicationController extends Controller {
-  get data() {
-    // return 'abcdefg';
-    // return {
-    //   firstName: 'Bob',
-    //   lastName: 'Jones',
-    // };
-    return {
-      contactDetail: {
-        firstName: 'John',
-        lastName: 'Doe',
-      },
-      paymentMethodType: 'CARD',
-      contactDetailCountry: 'United States',
-      // creditCardNumber: '4988 4388 4388 4305',
-      // cvv: '053',
-      // $type: 'com.linkedin.payments.paymentmethod.CreditCard',
-    };
-  }
+  @tracked
+  data: Record<string, unknown> = tracked({
+    contactDetail: {
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+    paymentMethodType: 'CARD',
+  });
+
+  @tracked
+  includePostalCode = false;
+
+  // 'abcdefg';
+  // {
+  //   firstName: 'Bob',
+  //   lastName: 'Jones',
+  // };
+  // {
+  //   contactDetail: {
+  //     firstName: 'John',
+  //     lastName: 'Doe',
+  //   },
+  //   paymentMethodType: 'CARD',
+  //   contactDetailCountry: 'ca',
+  //   creditCardNumber: '4988 4388 4388 4305',
+  //   cvv: '053',
+  //   $type: 'com.linkedin.payments.paymentmethod.CreditCard',
+  // };
 
   get dataSchema(): Record<string, unknown> {
     // return {
@@ -78,6 +94,29 @@ export default class ApplicationController extends Controller {
         contactDetailCountry: {
           title: 'Country',
           type: 'string',
+          format: 'select',
+          anyOf: [
+            {
+              type: 'string',
+              title: 'United States',
+              enum: ['us'],
+            },
+            {
+              type: 'string',
+              title: 'Canada',
+              enum: ['ca'],
+            },
+            {
+              type: 'string',
+              title: 'Mexico',
+              enum: ['mx'],
+            },
+          ],
+        },
+        contactDetailPostalCode: {
+          title: 'Postal code',
+          type: 'string',
+          format: this.includePostalCode ? undefined : 'hidden',
         },
       },
     };
@@ -134,6 +173,16 @@ export default class ApplicationController extends Controller {
   @action
   onFormSubmit(data: Record<string, unknown>) {
     console.log('onFormSubmit: %o', data);
+  }
+
+  @action
+  onValueChange(formValue: OnValueChangeArgs) {
+    console.log('onFormValue: %o', formValue);
+    this.includePostalCode =
+      formValue.name === 'contactDetailCountry' && formValue.value === 'us';
+    if (formValue.name === 'contactDetailCountry') {
+      this.data['contactDetailCountry'] = formValue.value ?? undefined;
+    }
   }
 
   @action

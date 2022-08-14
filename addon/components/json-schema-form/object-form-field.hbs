@@ -18,9 +18,8 @@
     {{/each}}
   </fieldset>
 {{else}}
-  {{! TODO: Implement support for invoking widget based on format }}
-  {{#let this.widget as |widget|}}
-    <widget
+  {{#let this.widget as |Widget|}}
+    <Widget
       @description={{@dataSchema.description}}
       @errorMessage={{this.formValue.errorMessage}}
       @name={{this.formValue.name}}

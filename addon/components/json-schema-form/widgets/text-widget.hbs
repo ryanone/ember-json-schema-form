@@ -1,14 +1,14 @@
 <div class="text-widget" ...attributes>
   <JsonSchemaForm::Widgets::WidgetMetadata
     @description={{@description}}
-    @formFieldId={{this.formFieldId}}
+    @formElementId={{this.formElementId}}
     @title={{@title}}
   />
   {{#if @errorMessage}}
     <p>{{@errorMessage}}</p>
   {{/if}}
   <input
-    id={{this.inputId}}
+    id={{this.formElementId}}
     name={{@name}}
     value={{@value}}
     {{on "input" this.onValueChange}}

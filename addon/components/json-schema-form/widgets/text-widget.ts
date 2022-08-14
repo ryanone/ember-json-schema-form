@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { createDomId } from 'ember-json-schema-form/utils/dom';
 
 export default class JsonSchemaFormWidgetsTextWidget extends Component<WidgetArgs> {
-  get inputId() {
+  get formElementId() {
     return createDomId(this);
   }
 

@@ -1,10 +1,11 @@
-{{#let this.widget as |widget|}}
-  <widget
+{{#let this.widget as |Widget|}}
+  <Widget
     @description={{@dataSchema.description}}
+    @enums={{this.enums}}
     @errorMessage={{this.formValue.errorMessage}}
     @name={{this.formValue.name}}
     @onValueChange={{@onValueChange}}
     @title={{@dataSchema.title}}
-    @value={{@data}}
+    @value={{this.formValue.value}}
     ...attributes />
 {{/let}}
