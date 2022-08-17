@@ -16,7 +16,6 @@ export default class JsonSchemaFormWidgetsSelectWidget extends Component<EnumWid
   }
 
   get selectOptions(): SelectOption[] {
-    console.log('selectOptions(): %o', this.args.value);
     if (Array.isArray(this.args.value)) {
       const values: unknown[] = this.args.value;
       return this.args.enums.map((e) => ({

@@ -1,5 +1,7 @@
 'use strict';
 
+const ERROR = 'error';
+
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -20,7 +22,9 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'no-console': ERROR,
+  },
   overrides: [
     // node files
     {
