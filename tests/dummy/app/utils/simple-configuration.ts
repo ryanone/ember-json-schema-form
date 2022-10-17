@@ -11,6 +11,6 @@ export const ELEMENT_SCHEMA: Record<string, unknown> = {
   'widget:validate': () => {
     return undefined;
   },
-};;
+};
 
 export const WIDGETS: Record<string, unknown> = {};
