@@ -172,11 +172,13 @@ export default class ApplicationController extends Controller {
 
   @action
   onFormSubmit(data: Record<string, unknown>) {
+    // eslint-disable-next-line no-console
     console.log('onFormSubmit: %o', data);
   }
 
   @action
   onValueChange(formValue: OnValueChangeArgs) {
+    // eslint-disable-next-line no-console
     console.log('onFormValue: %o', formValue);
     this.includePostalCode =
       formValue.name === 'contactDetailCountry' && formValue.value === 'us';
@@ -190,6 +192,7 @@ export default class ApplicationController extends Controller {
     value: FormValueType,
     formState: Record<string, unknown> | FormValueType
   ): string | undefined {
+    // eslint-disable-next-line no-console
     console.log('controller.validatePaymentMethod(%o, %o)', value, formState);
     return 'Invalid payment method';
   }
