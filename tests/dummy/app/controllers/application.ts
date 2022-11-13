@@ -4,7 +4,7 @@ import {
   DATA_TYPE_SCHEMA,
   ELEMENT_SCHEMA,
   WIDGETS,
-} from '../utils/credit-card-configuration';
+} from 'dummy/utils/states-select-configuration';
 import Controller from '@ember/controller';
 import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 import { action } from '@ember/object';

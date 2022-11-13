@@ -7,6 +7,7 @@ export const DATA: Record<string, unknown> = {
     firstName: 'John',
     lastName: 'Doe',
   },
+  contactDetailCountry: 'us',
   paymentMethodType: 'CARD',
 };
 
@@ -85,11 +86,3 @@ function validatePaymentMethod(
   console.log('controller.validatePaymentMethod(%o, %o)', value, formState);
   return 'Invalid payment method';
 }
-
-export default {
-  DATA,
-  DATA_SCHEMA,
-  DATA_TYPE_SCHEMA,
-  ELEMENT_SCHEMA,
-  WIDGETS,
-};
