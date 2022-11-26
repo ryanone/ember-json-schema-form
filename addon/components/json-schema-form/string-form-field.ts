@@ -4,7 +4,6 @@ import {
 } from 'ember-json-schema-form/utils/types/json-schema';
 import {
   FormFieldArgs,
-  ValidateFn,
 } from 'ember-json-schema-form/utils/form-utils';
 import Component from '@glimmer/component';
 import { DEFAULT_FORMAT } from 'ember-json-schema-form/utils/registry-schema';
@@ -30,12 +29,6 @@ export default class JsonSchemaFormStringFormField extends Component<FormFieldAr
       throw new Error('No name specified for this form field');
     }
     formValue.name = formElementName as string;
-    if (this.args.elementSchema?.['widget:validate']) {
-      const validateFn: ValidateFn = this.args.elementSchema[
-        'widget:validate'
-      ] as ValidateFn;
-      formValue.validateFn = validateFn;
-    }
     this.formValue = formValue;
     this.args.onValueInitialized(formValue);
   }

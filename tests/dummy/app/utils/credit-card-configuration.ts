@@ -1,6 +1,5 @@
 import ContactDetailComponent from '../components/contact-detail';
 import CreditCardPanelComponent from '../components/credit-card-panel';
-import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 
 export const DATA: Record<string, unknown> = {
   contactDetail: {
@@ -70,19 +69,9 @@ export const DATA_TYPE_SCHEMA: Record<string, unknown> = {
 
 export const ELEMENT_SCHEMA: Record<string, unknown> = {
   'widget:name': 'paymentMethod',
-  'widget:validate': validatePaymentMethod,
 };
 
 export const WIDGETS: Record<string, unknown> = {
   ContactDetail: ContactDetailComponent,
   CreditCardPanel: CreditCardPanelComponent,
 };
-
-function validatePaymentMethod(
-  value: FormValueType,
-  formState: Record<string, unknown> | FormValueType
-): string | undefined {
-  // eslint-disable-next-line no-console
-  console.log('controller.validatePaymentMethod(%o, %o)', value, formState);
-  return 'Invalid payment method';
-}

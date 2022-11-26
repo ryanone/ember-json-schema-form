@@ -29,7 +29,7 @@ export const DATA_SCHEMA: Record<string, unknown> = {
 
 export const DATA_TYPE_SCHEMA: Record<string, unknown> = {
   string: {
-    select: 'Autocomplete',
+    select: 'Select',
   },
 };
 
