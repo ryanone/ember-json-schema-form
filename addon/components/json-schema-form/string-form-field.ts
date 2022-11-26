@@ -2,9 +2,7 @@ import {
   DataType as JsonSchemaDataType,
   StringTypeSchema,
 } from 'ember-json-schema-form/utils/types/json-schema';
-import {
-  FormFieldArgs,
-} from 'ember-json-schema-form/utils/form-utils';
+import { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
 import Component from '@glimmer/component';
 import { DEFAULT_FORMAT } from 'ember-json-schema-form/utils/registry-schema';
 import FormValue from 'ember-json-schema-form/utils/form-value';
