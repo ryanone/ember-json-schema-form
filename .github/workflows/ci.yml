@@ -15,6 +15,7 @@ jobs:
   test:
     name: "Tests"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v3
@@ -33,6 +34,7 @@ jobs:
   floating:
     name: "Floating Dependencies"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v3
@@ -49,11 +51,13 @@ jobs:
     name: ${{ matrix.try-scenario }}
     runs-on: ubuntu-latest
     needs: "test"
+    timeout-minutes: 10
 
     strategy:
       fail-fast: false
       matrix:
         try-scenario:
+          - ember-lts-3.28
           - ember-lts-4.4
           - ember-release
           - ember-beta
@@ -67,7 +71,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
           cache: npm
       - name: Install Dependencies
         run: npm ci
