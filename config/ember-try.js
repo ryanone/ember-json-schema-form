@@ -23,6 +23,9 @@ module.exports = async function () {
           },
         },
       },
+      // Commenting these scenarios out until
+      // https://github.com/emberjs/ember-test-helpers/issues/1236 is resolved
+      /*
       {
         name: 'ember-release',
         npm: {
@@ -47,6 +50,7 @@ module.exports = async function () {
           },
         },
       },
+      */
       {
         name: 'ember-classic',
         env: {
