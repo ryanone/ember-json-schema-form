@@ -12,6 +12,18 @@ export default class FormValue {
   name = '';
 
   @tracked
+  maxLength: number | undefined;
+
+  @tracked
+  minLength: number | undefined;
+
+  @tracked
+  pattern: string | undefined;
+
+  @tracked
+  title: string | undefined;
+
+  @tracked
   value: FormValueType;
 
   @tracked

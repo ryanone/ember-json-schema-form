@@ -2,8 +2,8 @@ import {
   TypeSchema,
   WidgetMap,
 } from 'ember-json-schema-form/utils/types/registry';
-import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
 import Component from '@glimmer/component';
+import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
 import RegistrySchema from 'ember-json-schema-form/utils/registry-schema';
 import Service from '@ember/service';
 

@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
-import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 import type { EnumWidgetArgs } from 'ember-json-schema-form/utils/types/widget';
+import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 import { action } from '@ember/object';
 import { createDomId } from 'ember-json-schema-form/utils/dom';
 

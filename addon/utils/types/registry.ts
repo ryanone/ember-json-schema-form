@@ -1,4 +1,9 @@
-import type { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
+import type {
+  DataType as JsonSchemaDataType,
+  JsonTypeSchema,
+  StringTypeSchema,
+} from 'ember-json-schema-form/utils/types/json-schema';
+import type { FormData } from 'ember-json-schema-form/utils/form-utils';
 
 /**
  * Ex.
@@ -19,3 +24,13 @@ export type WidgetMap = Record<string, unknown>;
 export type TypeRegistry = {
   [key in JsonSchemaDataType]?: WidgetMap;
 };
+
+export type ErrorMessageEntry = (
+  data: FormData,
+  dataSchema: JsonTypeSchema
+) => string;
+
+export type ErrorMessageMaxLengthEntry = (
+  data: FormData,
+  dataSchema: StringTypeSchema
+) => string;

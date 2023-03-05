@@ -4,13 +4,13 @@
     @formElementId={{this.formElementId}}
     @title={{@title}}
   />
-  {{#if @errorMessage}}
-    <p>{{@errorMessage}}</p>
-  {{/if}}
   <input
     id={{this.formElementId}}
     name={{@name}}
     value={{@value}}
     {{on "input" this.onValueChange}}
     class="text-widget__input">
+  {{#if @errorMessage}}
+    <p>{{@errorMessage}}</p>
+  {{/if}}
 </div>

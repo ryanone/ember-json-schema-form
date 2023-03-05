@@ -24,6 +24,7 @@ module.exports = {
   },
   rules: {
     'no-console': ERROR,
+    'sort-imports': ERROR,
   },
   overrides: [
     // node files

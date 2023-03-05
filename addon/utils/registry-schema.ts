@@ -6,8 +6,8 @@ import {
 import AutocompleteWidget from 'ember-json-schema-form/components/json-schema-form/widgets/autocomplete-widget';
 import Component from '@glimmer/component';
 import HiddenInputWidget from 'ember-json-schema-form/components/json-schema-form/widgets/hidden-input-widget';
-import SelectWidget from 'ember-json-schema-form/components/json-schema-form/widgets/select-widget';
 import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
+import SelectWidget from 'ember-json-schema-form/components/json-schema-form/widgets/select-widget';
 import TextWidget from 'ember-json-schema-form/components/json-schema-form/widgets/text-widget';
 import type { TypeFormatToWidgetIdMap } from 'ember-json-schema-form/utils/types/registry';
 

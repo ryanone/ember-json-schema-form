@@ -3,11 +3,12 @@ import {
   WidgetMap,
 } from 'ember-json-schema-form/utils/types/registry';
 import Component from '@glimmer/component';
+import { DefaultErrorMessages } from 'ember-json-schema-form/utils/errors';
 import { FormData } from 'ember-json-schema-form/utils/form-utils';
+import type { FormElementSchema } from 'ember-json-schema-form/utils/form-utils';
 import FormState from 'ember-json-schema-form/utils/form-state';
 import FormValue from 'ember-json-schema-form/utils/form-value';
 import type { FormValueType } from 'ember-json-schema-form/utils/types/form';
-import type { FormElementSchema } from 'ember-json-schema-form/utils/form-utils';
 import JsonSchema from 'ember-json-schema-form/utils/types/json-schema';
 import RegistryService from 'ember-json-schema-form/services/json-schema-form/registry';
 import { action } from '@ember/object';
@@ -33,6 +34,8 @@ export default class JsonSchemaForm extends Component<JsonSchemaFormArgs> {
   formId: string;
 
   formState: FormState;
+
+  errorMessages = DefaultErrorMessages;
 
   @service('json-schema-form/registry')
   declare registry: RegistryService;
@@ -60,8 +63,11 @@ export default class JsonSchemaForm extends Component<JsonSchemaFormArgs> {
   @action
   onFormSubmit(e: Event) {
     e.preventDefault();
-    const serialized = this.formState.serialize();
-    this.args.onFormSubmit(serialized);
+    const result = this.formState.validate(this.errorMessages);
+    if (result) {
+      const serialized = this.formState.serialize();
+      this.args.onFormSubmit(serialized);
+    }
   }
 
   @action

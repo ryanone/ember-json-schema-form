@@ -80,6 +80,9 @@ export interface StringTypeSchema extends BaseDataTypeSchema {
   format?: StringFormat;
   anyOf?: StringTypeSchema[];
   enum?: string[];
+  maxLength?: number;
+  minLength?: number;
+  pattern?: string;
 }
 
 export type JsonTypeSchema =

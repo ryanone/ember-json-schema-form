@@ -2,14 +2,14 @@ import {
   DataType as JsonSchemaDataType,
   StringTypeSchema,
 } from 'ember-json-schema-form/utils/types/json-schema';
-import { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
 import Component from '@glimmer/component';
 import { DEFAULT_FORMAT } from 'ember-json-schema-form/utils/registry-schema';
+import { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
 import FormValue from 'ember-json-schema-form/utils/form-value';
+import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 import RegistryService from 'ember-json-schema-form/services/json-schema-form/registry';
 import { WidgetEnum } from 'ember-json-schema-form/utils/types/widget';
 import { inject as service } from '@ember/service';
-import { FormValueType } from 'ember-json-schema-form/utils/types/form';
 
 export default class JsonSchemaFormStringFormField extends Component<FormFieldArgs> {
   @service('json-schema-form/registry')
@@ -23,10 +23,15 @@ export default class JsonSchemaFormStringFormField extends Component<FormFieldAr
     const value = this.args.data as string;
     const formValue = new FormValue();
     formValue.value = value;
+    const dataSchema = this.args.dataSchema as StringTypeSchema;
+    formValue.maxLength = dataSchema.maxLength;
+    formValue.minLength = dataSchema.minLength;
+    formValue.pattern = dataSchema.pattern;
     if (!formElementName) {
       throw new Error('No name specified for this form field');
     }
     formValue.name = formElementName as string;
+    formValue.title = dataSchema.title || formValue.name;
     this.formValue = formValue;
     this.args.onValueInitialized(formValue);
   }

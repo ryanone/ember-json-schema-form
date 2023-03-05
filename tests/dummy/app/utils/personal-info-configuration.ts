@@ -9,6 +9,7 @@ export const DATA_SCHEMA: Record<string, unknown> = {
       description: 'Enter your first name',
       title: 'First name',
       type: 'string',
+      required: true,
     },
     lastName: {
       type: 'string',

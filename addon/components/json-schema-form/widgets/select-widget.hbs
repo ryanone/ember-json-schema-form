@@ -4,9 +4,6 @@
     @formFieldId={{this.formElementId}}
     @title={{@title}}
   />
-  {{#if @errorMessage}}
-    <p>{{@errorMessage}}</p>
-  {{/if}}
   <select
     id={{this.formElementId}}
     name={{@name}}
@@ -25,4 +22,7 @@
       </option>
     {{/each}}
   </select>
+  {{#if @errorMessage}}
+    <p>{{@errorMessage}}</p>
+  {{/if}}
 </div>
