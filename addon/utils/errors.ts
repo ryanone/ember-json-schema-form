@@ -22,6 +22,11 @@ export const DefaultErrorMessages: ErrorMessagesMap = {
       : `This value must not have more than ${opts.length} characters.`;
   },
   [ErrorType.MinLength]: (opts: ErrorMessageOpts): string => {
+    if (opts.length === 1) {
+      return opts.title
+        ? `${opts.title} is required.`
+        : 'This value is required.';
+    }
     return opts.title
       ? `${opts.title} must have at least ${opts.length} characters.`
       : `This value must have at least ${opts.length} characters.`;

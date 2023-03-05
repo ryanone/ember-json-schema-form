@@ -24,6 +24,7 @@ export interface FormFieldArgs {
   errorMessage?: string;
   onValueChange: (name: string, value: FormValueType) => void;
   onValueInitialized: (formValue: FormValue) => void;
+  isRequired: boolean;
 }
 
 export function createFormFieldArgsList(
@@ -40,6 +41,7 @@ export function createFormFieldArgsList(
     const objSchema = dataSchema as unknown as ObjectTypeSchema;
     const objProperties = objSchema.properties;
     const objData = data && (data as Record<string, FormData>);
+    const requiredProperties: string[] = objSchema.required ?? [];
     Object.keys(objProperties).forEach((key) => {
       const propertyElementSchema: FormElementSchema =
         elementSchema && elementSchema[key]
@@ -52,6 +54,7 @@ export function createFormFieldArgsList(
         elementSchema: propertyElementSchema,
         onValueChange,
         onValueInitialized,
+        isRequired: requiredProperties.includes(key),
       };
       argsList.push(formFieldArgs);
     });
@@ -62,6 +65,7 @@ export function createFormFieldArgsList(
       formId,
       onValueChange,
       onValueInitialized,
+      isRequired: false,
     };
     if (elementSchema) {
       formFieldArgs.elementSchema = elementSchema;

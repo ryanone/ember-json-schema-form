@@ -4,15 +4,18 @@ export const DATA_SCHEMA: Record<string, unknown> = {
   title: 'My form',
   description: 'My description',
   type: 'object',
+  required: ['firstName', 'lastName'],
   properties: {
     firstName: {
       description: 'Enter your first name',
       title: 'First name',
       type: 'string',
-      required: true,
+      minLength: 1,
     },
     lastName: {
       type: 'string',
+      title: 'Last name',
+      pattern: '^[A-Z][a-z]+$',
     },
     address: {
       type: 'object',
