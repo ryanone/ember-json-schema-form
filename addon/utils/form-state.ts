@@ -30,7 +30,6 @@ export default class FormState {
   validate(errorMessages: ErrorMessagesMap): boolean {
     return this.getValues().reduce((accumulator, formValue) => {
       if (formValue.isRequired) {
-        debugger;
         if (isEmpty(formValue.value)) {
           const errorMessageFn = errorMessages[ErrorType.Required];
           if (errorMessageFn) {
