@@ -10,6 +10,8 @@ interface SelectOption {
   selected: boolean;
 }
 
+const PLACEHOLDER_ATTR_NAME = 'data-select-widget-placeholder';
+
 export default class JsonSchemaFormWidgetsSelectWidget extends Component<EnumWidgetArgs> {
   get formElementId() {
     return createDomId(this);
@@ -35,8 +37,11 @@ export default class JsonSchemaFormWidgetsSelectWidget extends Component<EnumWid
     const select = e.target as HTMLSelectElement;
     const { selectedOptions } = select;
     if (selectedOptions.length === 1) {
-      const value = selectedOptions[0]?.value;
-      this.args.onValueChange(this.args.name, value);
+      const selectedOption = selectedOptions[0];
+      if (!selectedOption?.hasAttribute(PLACEHOLDER_ATTR_NAME)) {
+        const value = selectedOptions[0]?.value;
+        this.args.onValueChange(this.args.name, value);
+      }
     } else {
       const values = Array.from(selectedOptions).map((option) => option.value);
       this.args.onValueChange(this.args.name, values);

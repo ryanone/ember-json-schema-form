@@ -9,6 +9,7 @@
     id={{this.formElementId}}
     name={{@name}}
     value={{@value}}
+    placeholder={{@placeholder}}
     {{on "input" this.onValueChange}}
     class="text-widget__input">
   {{#if @errorMessage}}

@@ -33,6 +33,11 @@ export const DATA_TYPE_SCHEMA: Record<string, unknown> = {
   },
 };
 
-export const ELEMENT_SCHEMA: Record<string, unknown> = {};
+export const ELEMENT_SCHEMA: Record<string, unknown> = {
+  state: {
+    'widget:name': 'state',
+    'widget:placeholder': 'Select a state',
+  },
+};
 
 export const WIDGETS: Record<string, unknown> = {};

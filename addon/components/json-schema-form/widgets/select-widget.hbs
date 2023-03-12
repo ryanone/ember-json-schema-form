@@ -10,7 +10,7 @@
     class="select-widget__select"
     {{on "change" this.onOptionSelect}}>
     {{#if @placeholder}}
-      <option value="">{{@placeholder}}</option>
+      <option value="" data-select-widget-placeholder>{{@placeholder}}</option>
     {{/if}}
     {{#each this.selectOptions as |selectOption|}}
       <option value={{selectOption.value}} selected={{if selectOption.selected true false}}>

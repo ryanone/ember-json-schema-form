@@ -22,6 +22,7 @@ export interface FormFieldArgs {
   formId: string;
   elementSchema?: FormElementSchema;
   errorMessage?: string;
+  placeholder?: string;
   onValueChange: (name: string, value: FormValueType) => void;
   onValueInitialized: (formValue: FormValue) => void;
   isRequired: boolean;

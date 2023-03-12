@@ -49,6 +49,7 @@ export const ELEMENT_SCHEMA: Record<string, unknown> = {
     },
     city: {
       'widget:name': 'address.city',
+      'widget:placeholder': 'Enter your city',
     },
   },
   'form:submitButton': {

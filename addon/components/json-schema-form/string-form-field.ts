@@ -52,6 +52,10 @@ export default class JsonSchemaFormStringFormField extends Component<FormFieldAr
     return undefined;
   }
 
+  get placeholder(): string | undefined {
+    return this.args.elementSchema?.['widget:placeholder'] as string;
+  }
+
   get widget(): Component<unknown> {
     const dataSchema = this.args.dataSchema as StringTypeSchema;
     const format = dataSchema.format ?? DEFAULT_FORMAT;
