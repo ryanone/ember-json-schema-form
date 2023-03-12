@@ -42,7 +42,10 @@ export function createFormFieldArgsList(
     const objProperties = objSchema.properties;
     const objData = data && (data as Record<string, FormData>);
     const requiredProperties: string[] = objSchema.required ?? [];
-    Object.keys(objProperties).forEach((key) => {
+    const keys =
+      (elementSchema && (elementSchema['widget:order'] as string[])) ??
+      Object.keys(objProperties);
+    keys.forEach((key) => {
       const propertyElementSchema: FormElementSchema =
         elementSchema && elementSchema[key]
           ? (elementSchema[key] as FormElementSchema)

@@ -36,6 +36,7 @@ export const DATA_SCHEMA: Record<string, unknown> = {
 export const DATA_TYPE_SCHEMA: Record<string, unknown> = {};
 
 export const ELEMENT_SCHEMA: Record<string, unknown> = {
+  // 'widget:order': ['address', 'firstName', 'lastName'],
   firstName: {
     'widget:name': 'person.firstName',
   },
