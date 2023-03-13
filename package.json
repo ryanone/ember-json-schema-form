@@ -64,7 +64,7 @@
     "@types/lodash-es": "^4.17.6",
     "@types/qunit": "^2.19.3",
     "@types/rsvp": "^4.0.4",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
