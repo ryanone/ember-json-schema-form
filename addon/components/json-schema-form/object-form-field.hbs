@@ -7,7 +7,7 @@
       <p>{{@dataSchema.description}}</p>
     {{/if}}
     {{#each this.formFieldArgsList as |formFieldArgs|}}
-      <JsonSchemaForm::FormField
+      <JsonSchemaForm::CreateFormField
         @data={{formFieldArgs.data}}
         @dataSchema={{formFieldArgs.dataSchema}}
         @formId={{@formId}}

@@ -8,6 +8,10 @@ export const DATA: Record<string, unknown> = {
   },
   contactDetailCountry: 'us',
   paymentMethodType: 'CARD',
+  expiration: {
+    month: 5,
+    year: 2027,
+  },
 };
 
 export const DATA_SCHEMA: Record<string, unknown> = {
@@ -28,6 +32,17 @@ export const DATA_SCHEMA: Record<string, unknown> = {
     paymentMethodType: {
       type: 'string',
       format: 'hidden',
+    },
+    expiration: {
+      type: 'object',
+      properties: {
+        month: {
+          type: 'integer',
+        },
+        year: {
+          type: 'integer',
+        },
+      },
     },
     contactDetailCountry: {
       title: 'Country',
@@ -68,7 +83,23 @@ export const DATA_TYPE_SCHEMA: Record<string, unknown> = {
 };
 
 export const ELEMENT_SCHEMA: Record<string, unknown> = {
-  'widget:name': 'paymentMethod',
+  paymentMethodType: {
+    'widget:name': 'paymentMethod.type',
+  },
+  contactDetailCountry: {
+    'widget:name': 'contactDetail.country',
+  },
+  contactDetailPostalCode: {
+    'widget:name': 'contactDetail.postalCode',
+  },
+  expiration: {
+    month: {
+      'widget:name': 'paymentMethod.expiration.month',
+    },
+    year: {
+      'widget:name': 'paymentMethod.expiration.year',
+    },
+  },
 };
 
 export const WIDGETS: Record<string, unknown> = {

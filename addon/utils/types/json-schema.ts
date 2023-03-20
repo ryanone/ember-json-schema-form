@@ -31,10 +31,18 @@ export default interface RootJsonSchema {
   $schema: SchemaVersion;
 }
 
-interface BaseDataTypeSchema {
+export interface BaseDataTypeSchema {
   description?: string;
   title?: string;
   format?: string;
+}
+
+export interface AnyOfTypeSchema<SchemaType> {
+  anyOf?: SchemaType[];
+}
+
+export interface EnumTypeSchema<EnumType> {
+  enum?: EnumType[];
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/array.html
@@ -45,16 +53,20 @@ export interface ArrayTypeSchema extends BaseDataTypeSchema {
   };
 }
 
-export interface BooleanTypeSchema extends BaseDataTypeSchema {
+export interface BooleanTypeSchema
+  extends BaseDataTypeSchema,
+    EnumTypeSchema<boolean>,
+    AnyOfTypeSchema<BooleanTypeSchema> {
   type: DataType.Boolean;
-  anyOf?: BooleanTypeSchema[];
-  enum?: boolean[];
 }
 
-export interface IntegerTypeSchema extends BaseDataTypeSchema {
+export interface IntegerTypeSchema
+  extends BaseDataTypeSchema,
+    EnumTypeSchema<number>,
+    AnyOfTypeSchema<IntegerTypeSchema> {
   type: DataType.Integer;
-  anyOf?: NumberTypeSchema[];
-  enum?: number[];
+  minimum?: number;
+  maximum?: number;
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/object.html
@@ -68,18 +80,22 @@ export interface NullTypeSchema extends BaseDataTypeSchema {
   type: DataType.Null;
 }
 
-export interface NumberTypeSchema extends BaseDataTypeSchema {
+export interface NumberTypeSchema
+  extends BaseDataTypeSchema,
+    EnumTypeSchema<number>,
+    AnyOfTypeSchema<NumberTypeSchema> {
   type: DataType.Number;
-  anyOf?: NumberTypeSchema[];
-  enum?: number[];
+  minimum?: number;
+  maximum?: number;
 }
 
 // Reference: http://json-schema.org/understanding-json-schema/reference/string.html
-export interface StringTypeSchema extends BaseDataTypeSchema {
+export interface StringTypeSchema
+  extends BaseDataTypeSchema,
+    EnumTypeSchema<string>,
+    AnyOfTypeSchema<StringTypeSchema> {
   type: DataType.String;
   format?: StringFormat;
-  anyOf?: StringTypeSchema[];
-  enum?: string[];
   maxLength?: number;
   minLength?: number;
   pattern?: string;

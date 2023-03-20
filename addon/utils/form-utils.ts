@@ -1,10 +1,15 @@
 import {
+  BooleanTypeSchema,
   DataType,
+  IntegerTypeSchema,
   JsonTypeSchema,
+  NumberTypeSchema,
   ObjectTypeSchema,
+  StringTypeSchema,
 } from 'ember-json-schema-form/utils/types/json-schema';
 import FormValue from 'ember-json-schema-form/utils/form-value';
 import type { FormValueType } from 'ember-json-schema-form/utils/types/form';
+import { WidgetEnum } from 'ember-json-schema-form/utils/types/widget';
 
 export type FormData =
   | Record<string, unknown>
@@ -77,4 +82,28 @@ export function createFormFieldArgsList(
     argsList.push(formFieldArgs);
   }
   return argsList;
+}
+
+type SchemaTypeWithEnum =
+  | BooleanTypeSchema
+  | IntegerTypeSchema
+  | NumberTypeSchema
+  | StringTypeSchema;
+
+export function createEnums<SchemaType extends SchemaTypeWithEnum>(
+  dataSchema: JsonTypeSchema
+): WidgetEnum<FormValueType>[] | undefined {
+  const dataSchemaCast = dataSchema as SchemaType;
+  if (dataSchemaCast.enum) {
+    return dataSchemaCast.enum.map((e) => ({ value: e }));
+  } else if (dataSchemaCast.anyOf) {
+    return dataSchemaCast.anyOf.map((s) => {
+      const schema = s as StringTypeSchema;
+      return {
+        label: schema.title,
+        value: schema.enum?.[0] ?? '',
+      };
+    });
+  }
+  return undefined;
 }
