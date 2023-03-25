@@ -69,8 +69,8 @@ export const DATA_SCHEMA: Record<string, unknown> = {
     contactDetailPostalCode: {
       title: 'Postal code',
       type: 'string',
-      // format: this.includePostalCode ? undefined : 'hidden',
       format: 'hidden',
+      // format: this.includePostalCode ? undefined : 'hidden',
     },
   },
 };

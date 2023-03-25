@@ -1,0 +1,13 @@
+{{#let this.widget as |Widget|}}
+  <Widget
+    @description={{@dataSchema.description}}
+    @enums={{this.enums}}
+    @errorMessage={{this.formValue.errorMessage}}
+    @isRequired={{@isRequired}}
+    @name={{this.formValue.name}}
+    @onValueChange={{this.onValueChange}}
+    @placeholder={{this.placeholder}}
+    @title={{@dataSchema.title}}
+    @value={{this.formValue.value}}
+    ...attributes />
+{{/let}}
