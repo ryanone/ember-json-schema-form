@@ -4,7 +4,7 @@ import {
   WidgetMap,
 } from 'ember-json-schema-form/utils/types/registry';
 import AutocompleteWidget from 'ember-json-schema-form/components/json-schema-form/widgets/autocomplete-widget';
-import CheckboxWidget from  'ember-json-schema-form/components/json-schema-form/widgets/checkbox-widget';
+import CheckboxWidget from 'ember-json-schema-form/components/json-schema-form/widgets/checkbox-widget';
 import Component from '@glimmer/component';
 import HiddenInputWidget from 'ember-json-schema-form/components/json-schema-form/widgets/hidden-input-widget';
 import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
