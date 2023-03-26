@@ -1,4 +1,4 @@
-import BaseFormFieldComponent from 'ember-json-schema-form/components/json-schema-form/base-form-field';
+import BaseFormFieldComponent from 'ember-json-schema-form/components/json-schema-form/form-fields/base-form-field';
 import type { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
 import type { FormValueType } from 'ember-json-schema-form/utils/types/form';
 import { DataType as JsonSchemaDataType } from 'ember-json-schema-form/utils/types/json-schema';
