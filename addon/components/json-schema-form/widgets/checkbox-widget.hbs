@@ -1,0 +1,19 @@
+<div class="checkbox-widget" ...attributes>
+  <JsonSchemaForm::Widgets::WidgetMetadata
+    @description={{@description}}
+    @formElementId={{this.formElementId}}
+    @isRequired={{@isRequired}}
+    @title={{@title}}
+  />
+  <Input
+    @checked={{@value}}
+    @type="checkbox"
+    id={{this.formElementId}}
+    name={{@name}}
+    class="checkbox-widget__input"
+    {{on "click" this.onValueChange}}
+    />
+  {{#if @errorMessage}}
+    <p>{{@errorMessage}}</p>
+  {{/if}}
+</div>

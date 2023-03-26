@@ -1,8 +1,9 @@
+import { isObject, set } from 'lodash-es';
 import type { ErrorMessagesMap } from 'ember-json-schema-form/utils/errors';
 import { ErrorType } from 'ember-json-schema-form/utils/errors';
 import FormValue from 'ember-json-schema-form/utils/form-value';
+import { get } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import { set } from 'lodash-es';
 
 export default class FormState {
   #values: Map<string, FormValue> = new Map<string, FormValue>();
@@ -18,7 +19,17 @@ export default class FormState {
   serialize(): Record<string, unknown> {
     const serialized = {};
     this.getValues().forEach((formValue) => {
-      set(serialized, formValue.name as string, formValue.value);
+      const formValueName = formValue.name as string;
+      const currValue = get(serialized, formValueName);
+      if (isObject(currValue) && isObject(formValue)) {
+        const merged = Object.assign(
+          currValue as object,
+          formValue.value as object
+        );
+        set(serialized, formValueName, merged);
+      } else {
+        set(serialized, formValueName, formValue.value);
+      }
     });
     return serialized;
   }

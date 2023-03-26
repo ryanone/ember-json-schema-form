@@ -1,3 +1,4 @@
+import BooleanFormField from 'ember-json-schema-form/components/json-schema-form/boolean-form-field';
 import Component from '@glimmer/component';
 import { DataType } from 'ember-json-schema-form/utils/types/json-schema';
 import { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
@@ -7,6 +8,7 @@ import ObjectFormField from 'ember-json-schema-form/components/json-schema-form/
 import StringFormField from 'ember-json-schema-form/components/json-schema-form/string-form-field';
 
 const FORM_FIELD_MAP: Map<DataType, typeof Component> = new Map();
+FORM_FIELD_MAP.set(DataType.Boolean, BooleanFormField);
 FORM_FIELD_MAP.set(DataType.Integer, IntegerFormField);
 FORM_FIELD_MAP.set(DataType.Number, NumberFormField);
 FORM_FIELD_MAP.set(DataType.Object, ObjectFormField);

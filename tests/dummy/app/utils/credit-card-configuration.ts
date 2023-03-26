@@ -17,6 +17,10 @@ export const DATA: Record<string, unknown> = {
 export const DATA_SCHEMA: Record<string, unknown> = {
   type: 'object',
   properties: {
+    business: {
+      title: 'Business customer',
+      type: 'boolean',
+    },
     contactDetail: {
       type: 'object',
       format: 'contact-detail',
@@ -83,6 +87,9 @@ export const DATA_TYPE_SCHEMA: Record<string, unknown> = {
 };
 
 export const ELEMENT_SCHEMA: Record<string, unknown> = {
+  business: {
+    'widget:name': 'contactDetail.isBusiness',
+  },
   paymentMethodType: {
     'widget:name': 'paymentMethod.type',
   },
