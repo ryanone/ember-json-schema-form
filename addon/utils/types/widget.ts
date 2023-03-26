@@ -10,6 +10,7 @@ export interface WidgetArgs {
   data: FormData;
   description?: string;
   formId: string;
+  format?: string;
   name: string;
   onValueChange: (name: string, value: FormValueType) => void;
   required?: boolean;

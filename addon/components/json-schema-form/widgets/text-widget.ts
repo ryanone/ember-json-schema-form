@@ -8,6 +8,18 @@ export default class JsonSchemaFormWidgetsTextWidget extends Component<WidgetArg
     return createDomId(this);
   }
 
+  get type(): string {
+    if (this.args.format) {
+      const { format } = this.args;
+      if (format === 'date-time') {
+        return 'datetime-local';
+      } else if (format === 'email' || format === 'idn-email') {
+        return 'email';
+      }
+    }
+    return 'text';
+  }
+
   @action
   onValueChange(e: Event) {
     const target = e.target as HTMLInputElement;

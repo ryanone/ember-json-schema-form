@@ -8,10 +8,11 @@
   <input
     id={{this.formElementId}}
     name={{@name}}
-    value={{@value}}
     placeholder={{@placeholder}}
-    {{on "input" this.onValueChange}}
-    class="text-widget__input">
+    type={{this.type}}
+    value={{@value}}
+    class="text-widget__input"
+    {{on "input" this.onValueChange}}>
   {{#if @errorMessage}}
     <p>{{@errorMessage}}</p>
   {{/if}}
