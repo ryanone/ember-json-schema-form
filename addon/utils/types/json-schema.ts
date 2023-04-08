@@ -48,9 +48,7 @@ export interface EnumTypeSchema<EnumType> {
 // Reference: http://json-schema.org/understanding-json-schema/reference/array.html
 export interface ArrayTypeSchema extends BaseDataTypeSchema {
   type: DataType.Array;
-  items: {
-    type: DataType;
-  };
+  items: JsonTypeSchema;
 }
 
 export interface BooleanTypeSchema
