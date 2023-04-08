@@ -1,0 +1,11 @@
+{{#each this.formFieldArgsList as |formFieldArgs|}}
+  <JsonSchemaForm::CreateFormField
+    @data={{formFieldArgs.data}}
+    @dataSchema={{formFieldArgs.dataSchema}}
+    @formId={{formFieldArgs.formId}}
+    @elementSchema={{formFieldArgs.elementSchema}}
+    @isRequired={{formFieldArgs.isRequired}}
+    @onValueChange={{formFieldArgs.onValueChange}}
+    @onValueInitialized={{formFieldArgs.onValueInitialized}}
+  />
+{{/each}}
