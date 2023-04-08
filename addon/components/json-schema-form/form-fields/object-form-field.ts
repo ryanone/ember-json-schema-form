@@ -1,15 +1,13 @@
 import {
-  FormFieldArgs,
-  createFormFieldArgsList,
-} from 'ember-json-schema-form/utils/form-utils';
-import {
   DataType as JsonSchemaDataType,
   ObjectTypeSchema,
 } from 'ember-json-schema-form/utils/types/json-schema';
 import Component from '@glimmer/component';
 import { DEFAULT_FORMAT } from 'ember-json-schema-form/utils/registry-schema';
+import type { FormFieldArgs } from 'ember-json-schema-form/utils/form-utils';
 import FormValue from 'ember-json-schema-form/utils/form-value';
 import RegistryService from 'ember-json-schema-form/services/json-schema-form/registry';
+import { createFormFieldArgsList } from 'ember-json-schema-form/utils/form-utils';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
